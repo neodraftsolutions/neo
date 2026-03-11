@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Draft Solutions | Smart Identity & Custom Acrylics</title>
+    
+    <!-- Google Fonts: Space Grotesk for headings, Inter for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config for Custom Colors/Fonts -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        neon: {
+                            cyan: '#06b6d4',
+                            blue: '#3b82f6',
+                            purple: '#8b5cf6'
+                        },
+                        dark: {
+                            900: '#0a0a0a',
+                            800: '#121212',
+                            700: '#1a1a1a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom styles for neon effects and animations */
+        body {
+            background-color: #0a0a0a;
+            color: #f3f4f6;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+        
+        .neon-border {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+        }
+        
+        .neon-border:hover {
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
+            border-color: #06b6d4;
+        }
+
+        .neon-button {
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-button:hover {
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .ambient-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* Image placeholder fallback styling */
+        .img-container {
+            background: linear-gradient(45deg, #121212, #1a1a1a);
+            position: relative;
+        }
+        .img-container::after {
+            content: 'Image Area';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #4b5563;
+            font-size: 0.875rem;
+            z-index: 1;
+        }
+        .img-container img {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hide scrollbar for thumbnails but allow horizontal scrolling */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #121212;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-neon-cyan selection:text-dark-900">
+
+    <!-- Ambient Background Glows -->
+    <div class="ambient-glow bg-neon-cyan w-96 h-96 top-0 left-0"></div>
+    <div class="ambient-glow bg-neon-purple w-96 h-96 top-1/2 right-0"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 border-b border-white/5 bg-dark-900/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i data-lucide="hexagon" class="text-neon-cyan w-8 h-8"></i>
+                    <span class="font-display font-bold text-xl tracking-tight text-white">Neo Draft<span class="text-neon-cyan">.</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-300 hover:text-neon-cyan transition-colors text-sm font-medium">Home</a>
+                    <a href="#products" class="text-gray-300 hover:text-neon-cyan transition-colors text-sm font-medium">Products</a>
+                    <a href="#about" class="text-gray-300 hover:text-neon-cyan transition-colors text-sm font-medium">About</a>
+                    <a href="#contact" class="text-gray-300 hover:text-neon-cyan transition-colors text-sm font-medium">Contact</a>
+                    <a href="https://wa.me/917483232936" target="_blank" class="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full transition-all text-sm font-medium">
+                        <i data-lucide="message-circle" class="w-4 h-4 text-green-400"></i>
+                        Chat Now
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2 focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-900 border-b border-white/5 absolute w-full left-0 top-20 shadow-2xl">
+            <div class="px-4 pt-4 pb-6 flex flex-col space-y-4">
+                <a href="#home" class="mobile-link text-gray-300 hover:text-neon-cyan transition-colors text-base font-medium">Home</a>
+                <a href="#products" class="mobile-link text-gray-300 hover:text-neon-cyan transition-colors text-base font-medium">Products</a>
+                <a href="#about" class="mobile-link text-gray-300 hover:text-neon-cyan transition-colors text-base font-medium">About</a>
+                <a href="#contact" class="mobile-link text-gray-300 hover:text-neon-cyan transition-colors text-base font-medium">Contact</a>
+                <a href="https://wa.me/917483232936" target="_blank" class="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-3 rounded-xl transition-all text-base font-medium mt-4">
+                    <i data-lucide="message-circle" class="w-5 h-5 text-green-400"></i>
+                    Chat Now
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neon-cyan/10 border border-neon-cyan/20 text-neon-cyan text-sm font-medium mb-8">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-cyan opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-neon-cyan"></span>
+                </span>
+                Next-Gen Identity Solutions
+            </div>
+            
+            <h1 class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-6 text-white leading-tight">
+                Smart Identity & <br/>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-blue neon-text">Custom Acrylic Solutions</span>
+            </h1>
+            
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400 mb-10">
+                NFC Keychains • Business Cards • Neon Name Boards • Custom Acrylics
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/917483232936" target="_blank" class="neon-button inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-cyan text-dark-900 font-bold rounded-lg text-lg">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    Order on WhatsApp
+                </a>
+                <a href="#products" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-dark-800 hover:bg-dark-700 border border-gray-800 hover:border-gray-600 text-white font-medium rounded-lg text-lg transition-all">
+                    Explore Products
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-24 bg-dark-800/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Our Premium Products</h2>
+                <div class="w-20 h-1 bg-neon-cyan mx-auto rounded-full neon-border"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Product 1 -->
+                <div class="group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden neon-border transition-all duration-300 flex flex-col product-gallery">
+                    <div class="aspect-[4/3] img-container overflow-hidden bg-dark-800 relative">
+                        <img src="6_f317effb-8c9e-4b53-9be3-6d66d81e163c.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=NFC+Keychain+1'" alt="NFC Keychain" class="main-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300">
+                    </div>
+                    <div class="flex gap-2 p-3 bg-dark-800/50 overflow-x-auto custom-scrollbar border-b border-gray-800">
+                        <img src="6_f317effb-8c9e-4b53-9be3-6d66d81e163c.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=NFC+Keychain+1'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-neon-cyan opacity-100 thumb-img flex-shrink-0" onclick="swapImg(this)" alt="Thumb 1">
+                        <img src="09f71d1a43691f4bf67d2b84bcb2b3d2.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/3b82f6?text=NFC+Keychain+2'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 2">
+                        <img src="1435aec03c8aaecdc222f6f2e2b86924.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/8b5cf6?text=NFC+Keychain+3'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 3">
+                        <img src="He8e54d381d1b4f038f2cf27c07e40a9cQ.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/ec4899?text=NFC+Keychain+4'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 4">
+                        <img src="Instantly-Contactless-Sharing-Social-Media-Lost-Found-Phone-NFC-Keychain.webp" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/eab308?text=NFC+Keychain+5'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 5">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">1️⃣ NFC Keychains</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-1">Tap-enabled keychains for quick digital sharing.</p>
+                        <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20NFC%20Keychains" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden neon-border transition-all duration-300 flex flex-col product-gallery">
+                    <div class="aspect-[4/3] img-container overflow-hidden bg-dark-800 relative">
+                        <img src="file_00000000a18871fab8040eafc15db01b.png" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Business+Cards+1'" alt="NFC Business Card" class="main-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300">
+                    </div>
+                    <div class="flex gap-2 p-3 bg-dark-800/50 overflow-x-auto custom-scrollbar border-b border-gray-800">
+                        <img src="file_00000000a18871fab8040eafc15db01b.png" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Business+Cards+1'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-neon-cyan opacity-100 thumb-img flex-shrink-0" onclick="swapImg(this)" alt="Thumb 1">
+                        <img src="4b8bd393dc1285ff77379d9bf111d9a4.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/3b82f6?text=Business+Cards+2'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 2">
+                        <img src="8b978bd4209bf45e3376995670bd0301.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/8b5cf6?text=Business+Cards+3'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 3">
+                        <img src="6fb7d728e5be79e33a2a6e1b43048256.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/ec4899?text=Business+Cards+4'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 4">
+                        <img src="ff4c0d32ca8615bd9f64a976898cf6f7.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/eab308?text=Business+Cards+5'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 5">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">2️⃣ NFC Business Cards</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-1">Smart digital business cards connected to your personal website.</p>
+                        <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20NFC%20Business%20Cards" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden neon-border transition-all duration-300 flex flex-col product-gallery">
+                    <div class="aspect-[4/3] img-container overflow-hidden bg-dark-800 relative">
+                        <img src="f37e60c4326e292c58d7b5b7213ec464.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Neon+Boards+1'" alt="Neon Name Board" class="main-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300">
+                    </div>
+                    <div class="flex gap-2 p-3 bg-dark-800/50 overflow-x-auto custom-scrollbar border-b border-gray-800">
+                        <img src="f37e60c4326e292c58d7b5b7213ec464.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Neon+Boards+1'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-neon-cyan opacity-100 thumb-img flex-shrink-0" onclick="swapImg(this)" alt="Thumb 1">
+                        <img src="2b048236546eef6a8cba4f05978b2e32.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/3b82f6?text=Neon+Boards+2'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 2">
+                        <img src="Screenshot_20260304-220814_Gallery.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/8b5cf6?text=Neon+Boards+3'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 3">
+                        <img src="5498d19ff61bdf289d3c5d435511ddce.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/ec4899?text=Neon+Boards+4'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 4">
+                        <img src="086071215e25c2f82a3bb1ca5cf1dc68.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/eab308?text=Neon+Boards+5'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-[.5] hover:opacity-[.9] thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 5">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">3️⃣ Neon Name Boards</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-1">Custom LED neon signs for homes, businesses and events.</p>
+                        <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20Neon%20Name%20Boards" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden neon-border transition-all duration-300 flex flex-col product-gallery">
+                    <div class="aspect-[4/3] img-container overflow-hidden bg-dark-800 relative">
+                        <img src="laser3.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Laser+Cutting+1'" alt="Acrylic Laser Cutting" class="main-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300">
+                    </div>
+                    <div class="flex gap-2 p-3 bg-dark-800/50 overflow-x-auto custom-scrollbar border-b border-gray-800">
+                        <img src="laser3.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Laser+Cutting+1'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-neon-cyan opacity-100 thumb-img flex-shrink-0" onclick="swapImg(this)" alt="Thumb 1">
+                        <img src="Acrylic_laser_cutting.png" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/3b82f6?text=Laser+Cutting+2'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 2">
+                        <img src="Figure-1-Laser-cutting-acrylic-sheet-1024x576.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/8b5cf6?text=Laser+Cutting+3'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 3">
+                        <img src="can-you-laser-cut-polyethylene-(3).jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/ec4899?text=Laser+Cutting+4'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 4">
+                        <img src="AoM-snijden-platen.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/eab308?text=Laser+Cutting+5'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 5">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">4️⃣ Acrylic Laser Cutting</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-1">Precision laser cutting for acrylic boards and custom designs.</p>
+                        <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20Acrylic%20Laser%20Cutting" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden neon-border transition-all duration-300 flex flex-col product-gallery">
+                    <div class="aspect-[4/3] img-container overflow-hidden bg-dark-800 relative">
+                        <img src="d917ca71c27a199204b4f75597f3abb6.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Custom+Acrylic+1'" alt="Custom Acrylic Products" class="main-img w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-300">
+                    </div>
+                    <div class="flex gap-2 p-3 bg-dark-800/50 overflow-x-auto custom-scrollbar border-b border-gray-800">
+                        <img src="d917ca71c27a199204b4f75597f3abb6.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Custom+Acrylic+1'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-neon-cyan opacity-100 thumb-img flex-shrink-0" onclick="swapImg(this)" alt="Thumb 1">
+                        <img src="acrylic-laser-cutting.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/3b82f6?text=Custom+Acrylic+2'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 2">
+                        <img src="cd9c0cb618.webp" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/8b5cf6?text=Custom+Acrylic+3'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 3">
+                        <img src="63c231c4a63ef15943b4a296f7f42154.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/ec4899?text=Custom+Acrylic+4'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 4">
+                        <img src="bd40549ad3264ba73fa100e5d2cf1975.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/eab308?text=Custom+Acrylic+5'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 transition-all" onclick="swapImg(this)" alt="Thumb 5">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">5️⃣ Custom Acrylic Products</h3>
+                        <p class="text-gray-400 text-sm mb-6 flex-1">Personalized acrylic designs for branding and décor.</p>
+                        <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20Custom%20Acrylic%20Products" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Why Choose Us Section -->
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- About Text -->
+                <div>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-6">About Neo Draft Solutions</h2>
+                    <div class="w-20 h-1 bg-neon-cyan rounded-full neon-border mb-8"></div>
+                    <div class="prose prose-invert prose-lg text-gray-400">
+                        <p class="mb-6">
+                            Neo Draft Solutions specializes in smart NFC technology and custom acrylic manufacturing.
+                        </p>
+                        <p>
+                            We help businesses and individuals create modern identity solutions, smart networking tools, and visually stunning signage using cutting-edge technology. Whether you need a simple tap-to-share business card or a vibrant glowing neon sign for your storefront, we deliver precision and quality.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Why Choose Us Features -->
+                <div class="bg-dark-800/80 border border-white/5 p-8 rounded-3xl backdrop-blur-sm">
+                    <h3 class="font-display text-2xl font-bold text-white mb-8">Why Choose Us</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-neon-cyan/10 flex items-center justify-center text-neon-cyan border border-neon-cyan/20">
+                                <i data-lucide="smartphone-nfc" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Smart NFC Technology</h4>
+                                <p class="text-sm text-gray-400">Next-gen contactless sharing built into premium materials.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-neon-cyan/10 flex items-center justify-center text-neon-cyan border border-neon-cyan/20">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Premium Quality Materials</h4>
+                                <p class="text-sm text-gray-400">Durable acrylics and high-end finishes for every product.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-neon-cyan/10 flex items-center justify-center text-neon-cyan border border-neon-cyan/20">
+                                <i data-lucide="palette" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Custom Design Options</h4>
+                                <p class="text-sm text-gray-400">Fully personalized designs to match your unique brand identity.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center text-green-400 border border-green-500/20">
+                                <i data-lucide="zap" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Fast WhatsApp Ordering</h4>
+                                <p class="text-sm text-gray-400">Seamless communication and quick order processing.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-dark-800/50 relative border-t border-white/5">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Ready to Upgrade?</h2>
+            <p class="text-gray-400 mb-10 text-lg">Contact us directly on WhatsApp to discuss your requirements, request a quote, or place an order instantly.</p>
+            
+            <div class="bg-dark-900 border border-gray-800 rounded-3xl p-8 md:p-12 shadow-2xl">
+                <div class="w-20 h-20 bg-dark-800 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/5">
+                    <i data-lucide="hexagon" class="text-neon-cyan w-10 h-10"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Neo Draft Solutions</h3>
+                <p class="text-xl text-gray-300 mb-8 flex items-center justify-center gap-2">
+                    <i data-lucide="phone" class="w-5 h-5 text-neon-cyan"></i>
+                    +91 7483232936
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-lg mx-auto">
+                    <a href="https://wa.me/917483232936" target="_blank" class="neon-button inline-flex items-center justify-center gap-3 w-full sm:w-1/2 px-6 py-4 bg-green-500 hover:bg-green-400 text-dark-900 font-bold rounded-xl text-lg transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)]">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+                        Chat Now
+                    </a>
+                    
+                    <button onclick="downloadVCard()" class="neon-button inline-flex items-center justify-center gap-3 w-full sm:w-1/2 px-6 py-4 bg-dark-800 hover:bg-dark-700 border border-neon-cyan text-neon-cyan font-bold rounded-xl text-lg transition-all">
+                        <i data-lucide="user-plus" class="w-6 h-6"></i>
+                        Save Contact
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 py-12 border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            
+            <div class="flex items-center gap-2">
+                <i data-lucide="hexagon" class="text-neon-cyan w-6 h-6"></i>
+                <span class="font-display font-bold text-lg text-white">Neo Draft Solutions &copy; 2026</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-dark-800 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-neon-cyan transition-colors" aria-label="Instagram">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-dark-800 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-neon-cyan transition-colors" aria-label="Facebook">
+                    <i data-lucide="facebook" class="w-5 h-5"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-dark-800 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-neon-cyan transition-colors" aria-label="Twitter">
+                    <i data-lucide="twitter" class="w-5 h-5"></i>
+                </a>
+            </div>
+
+            <div>
+                <a href="https://wa.me/917483232936" target="_blank" class="inline-flex items-center gap-2 text-gray-400 hover:text-green-400 transition-colors font-medium">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    Quick Contact
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Toast Notification -->
+    <div id="toast" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-dark-800 border border-neon-cyan text-white px-6 py-3 rounded-xl shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all duration-300 opacity-0 pointer-events-none z-50 translate-y-4 flex items-center gap-3">
+        <i data-lucide="check-circle" class="w-5 h-5 text-neon-cyan"></i>
+        Contact file downloaded! Open it to save.
+    </div>
+
+    <!-- Initialize Icons & Custom Scripts -->
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        if(mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // Product Image Swapper
+        function swapImg(thumb) {
+            const gallery = thumb.closest('.product-gallery');
+            const mainImg = gallery.querySelector('.main-img');
+            
+            // Swap main image source with a quick fade effect
+            mainImg.style.opacity = '0.5';
+            setTimeout(() => {
+                mainImg.src = thumb.src;
+                mainImg.style.opacity = '1';
+            }, 150);
+            
+            // Update thumbnail borders and opacity
+            gallery.querySelectorAll('.thumb-img').forEach(t => {
+                t.classList.remove('border-neon-cyan', 'opacity-100');
+                t.classList.add('border-transparent', 'opacity-50');
+            });
+            thumb.classList.add('border-neon-cyan', 'opacity-100');
+            thumb.classList.remove('border-transparent', 'opacity-50');
+        }
+
+        // Save Contact (VCard Download)
+        function downloadVCard() {
+            // Define standard VCard format details
+            const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Neo Draft Solutions\nORG:Neo Draft Solutions\nTEL;TYPE=WORK,VOICE:+917483232936\nEND:VCARD`;
+            
+            // Create a blob and trigger download
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'Neo_Draft_Solutions.vcf';
+            document.body.appendChild(a);
+            a.click();
+            
+            // Cleanup
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            // Show custom toast message
+            const toast = document.getElementById('toast');
+            if(toast) {
+                toast.classList.remove('opacity-0', 'translate-y-4');
+                setTimeout(() => {
+                    toast.classList.add('opacity-0', 'translate-y-4');
+                }, 4000);
+            }
+        }
+    </script>
+</body>
+</html>
