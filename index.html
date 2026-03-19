@@ -27,6 +27,11 @@
     <meta property="og:site_name" content="Neo Draft Solutions">
     <meta property="og:locale" content="en_IN">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+
     <!-- Google Fonts: Space Grotesk for headings, Inter for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -159,7 +164,45 @@
             z-index: 2;
         }
 
-        /* Mobile Experience Improvements */
+        /* Back to Top Button */
+        #back-to-top {
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            transform: translateY(10px);
+        }
+        #back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* Testimonial card scroll */
+        .testimonial-track {
+            display: flex;
+            gap: 1.5rem;
+            animation: scroll-left 30s linear infinite;
+            width: max-content;
+        }
+        .testimonial-track:hover { animation-play-state: paused; }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Star rating */
+        .stars { color: #fbbf24; letter-spacing: 2px; }
+
+        /* Pricing badge */
+        .price-tag {
+            background: linear-gradient(135deg, rgba(6,182,212,0.15), rgba(59,130,246,0.1));
+            border: 1px solid rgba(6,182,212,0.25);
+        }
+
+        /* Portfolio preview card */
+        .portfolio-preview {
+            background: linear-gradient(135deg, var(--from), var(--to));
+        }
         @media (max-width: 768px) {
             /* Larger touch targets for all buttons/links */
             a, button { min-height: 44px; }
@@ -362,7 +405,11 @@
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
                         <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">2️⃣ NFC Keychains</h3>
-                        <p class="text-gray-400 text-sm mb-6 flex-1">Tap-enabled keychains for quick digital sharing. Seamlessly connect without apps.</p>
+                        <p class="text-gray-400 text-sm mb-3 flex-1">Tap-enabled keychains for quick digital sharing. Seamlessly connect without apps.</p>
+                        <div class="price-tag rounded-xl p-3 mb-4 space-y-1">
+                            <p class="text-neon-cyan font-bold text-sm">₹150/keychain <span class="text-gray-400 font-normal">(25 units, custom design)</span></p>
+                            <p class="text-neon-cyan font-bold text-sm">₹120/keychain <span class="text-gray-400 font-normal">(50 units, custom design)</span></p>
+                        </div>
                         <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20NFC%20Keychains" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
                             <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
                         </a>
@@ -383,7 +430,11 @@
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
                         <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">3️⃣ NFC Business Cards</h3>
-                        <p class="text-gray-400 text-sm mb-6 flex-1">Smart digital business cards connected to your personal website or portfolio.</p>
+                        <p class="text-gray-400 text-sm mb-3 flex-1">Smart digital business cards connected to your personal website or portfolio.</p>
+                        <div class="price-tag rounded-xl p-3 mb-4 space-y-1">
+                            <p class="text-neon-cyan font-bold text-sm">₹350/card <span class="text-gray-400 font-normal">(custom design + your link)</span></p>
+                            <p class="text-neon-cyan font-bold text-sm">₹350/card + website charges <span class="text-gray-400 font-normal">(with website built by us)</span></p>
+                        </div>
                         <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20NFC%20Business%20Cards" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
                             <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
                         </a>
@@ -404,7 +455,10 @@
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
                         <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">4️⃣ Neon Name Boards</h3>
-                        <p class="text-gray-400 text-sm mb-6 flex-1">Custom LED neon signs for homes, businesses, events, and interior décor.</p>
+                        <p class="text-gray-400 text-sm mb-3 flex-1">Custom LED neon signs for homes, businesses, events, and interior décor.</p>
+                        <div class="price-tag rounded-xl p-3 mb-4">
+                            <p class="text-neon-cyan font-bold text-sm">₹2,000 <span class="text-gray-400 font-normal">(2×1.5 ft board + adapter included)</span></p>
+                        </div>
                         <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20Neon%20Name%20Boards" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
                             <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
                         </a>
@@ -425,7 +479,10 @@
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
                         <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">5️⃣ Acrylic Laser Cutting</h3>
-                        <p class="text-gray-400 text-sm mb-6 flex-1">Precision laser cutting for acrylic boards, signage, and custom industrial designs.</p>
+                        <p class="text-gray-400 text-sm mb-3 flex-1">Precision laser cutting for acrylic boards, signage, and custom industrial designs.</p>
+                        <div class="price-tag rounded-xl p-3 mb-4">
+                            <p class="text-neon-cyan font-bold text-sm">₹15/minute <span class="text-gray-400 font-normal">(machine time, based on complexity)</span></p>
+                        </div>
                         <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20Acrylic%20Laser%20Cutting" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
                             <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
                         </a>
@@ -446,7 +503,10 @@
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
                         <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">6️⃣ Custom Acrylic Products</h3>
-                        <p class="text-gray-400 text-sm mb-6 flex-1">Personalized acrylic designs, awards, and displays for branding and décor.</p>
+                        <p class="text-gray-400 text-sm mb-3 flex-1">Personalized acrylic designs, awards, and displays for branding and décor.</p>
+                        <div class="price-tag rounded-xl p-3 mb-4">
+                            <p class="text-neon-cyan font-bold text-sm">Custom Quote <span class="text-gray-400 font-normal">(price depends on product & design)</span></p>
+                        </div>
                         <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20Custom%20Acrylic%20Products" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
                             <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
                         </a>
@@ -473,65 +533,95 @@
             
             <div class="overflow-y-auto custom-scrollbar flex-1 pr-2">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    
+
                     <!-- Link 1 -->
-                    <a href="https://neodraftsolutions.github.io/dr-vinayak-hosamani/" target="_blank" class="p-5 rounded-xl bg-dark-800 border border-white/5 hover:border-neon-cyan hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(6,182,212,0.2)] transition-all flex flex-col gap-3 group">
-                        <div class="w-10 h-10 rounded-lg bg-neon-cyan/10 flex items-center justify-center text-neon-cyan mb-2">
-                            <i data-lucide="stethoscope" class="w-5 h-5"></i>
+                    <a href="https://neodraftsolutions.github.io/dr-vinayak-hosamani/" target="_blank" class="rounded-xl overflow-hidden border border-white/5 hover:border-neon-cyan hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(6,182,212,0.25)] transition-all group flex flex-col">
+                        <div class="h-28 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, #0e2a2f, #0a3d3a);">
+                            <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(0deg,transparent,transparent 20px,rgba(6,182,212,0.3) 20px,rgba(6,182,212,0.3) 21px),repeating-linear-gradient(90deg,transparent,transparent 20px,rgba(6,182,212,0.3) 20px,rgba(6,182,212,0.3) 21px);"></div>
+                            <div class="text-center z-10">
+                                <div class="w-12 h-12 rounded-full bg-neon-cyan/20 border border-neon-cyan/40 flex items-center justify-center mx-auto mb-2">
+                                    <i data-lucide="stethoscope" class="w-6 h-6 text-neon-cyan"></i>
+                                </div>
+                                <span class="text-xs text-neon-cyan/70 font-medium uppercase tracking-widest">Medical</span>
+                            </div>
                         </div>
-                        <div>
-                            <span class="text-white font-bold text-lg group-hover:text-neon-cyan transition-colors block">Dr. Vinayak S. Hosamani</span>
-                            <span class="text-sm text-gray-400">Medical Professional Website</span>
+                        <div class="p-4 bg-dark-800 flex-1 flex flex-col gap-1">
+                            <span class="text-white font-bold group-hover:text-neon-cyan transition-colors">Dr. Vinayak S. Hosamani</span>
+                            <span class="text-xs text-gray-400">Medical Professional Website</span>
+                            <span class="text-xs font-semibold text-neon-cyan flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
                         </div>
-                        <span class="text-xs font-semibold text-neon-cyan flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
                     </a>
 
                     <!-- Link 2 -->
-                    <a href="https://mayurdamamgar-commits.github.io/mayur-damamgar/" target="_blank" class="p-5 rounded-xl bg-dark-800 border border-white/5 hover:border-neon-blue hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(59,130,246,0.2)] transition-all flex flex-col gap-3 group">
-                        <div class="w-10 h-10 rounded-lg bg-neon-blue/10 flex items-center justify-center text-neon-blue mb-2">
-                            <i data-lucide="user" class="w-5 h-5"></i>
+                    <a href="https://mayurdamamgar-commits.github.io/mayur-damamgar/" target="_blank" class="rounded-xl overflow-hidden border border-white/5 hover:border-neon-blue hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(59,130,246,0.25)] transition-all group flex flex-col">
+                        <div class="h-28 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, #0f172a, #1e3a5f);">
+                            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.6) 0%, transparent 60%), radial-gradient(circle at 70% 50%, rgba(139,92,246,0.4) 0%, transparent 60%);"></div>
+                            <div class="text-center z-10">
+                                <div class="w-12 h-12 rounded-full bg-neon-blue/20 border border-neon-blue/40 flex items-center justify-center mx-auto mb-2">
+                                    <i data-lucide="user" class="w-6 h-6 text-neon-blue"></i>
+                                </div>
+                                <span class="text-xs text-neon-blue/70 font-medium uppercase tracking-widest">Portfolio</span>
+                            </div>
                         </div>
-                        <div>
-                            <span class="text-white font-bold text-lg group-hover:text-neon-blue transition-colors block">Personal Portfolio</span>
-                            <span class="text-sm text-gray-400">Mayur Damamgar</span>
+                        <div class="p-4 bg-dark-800 flex-1 flex flex-col gap-1">
+                            <span class="text-white font-bold group-hover:text-neon-blue transition-colors">Personal Portfolio</span>
+                            <span class="text-xs text-gray-400">Mayur Damamgar</span>
+                            <span class="text-xs font-semibold text-neon-blue flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
                         </div>
-                        <span class="text-xs font-semibold text-neon-blue flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
                     </a>
 
                     <!-- Link 3 -->
-                    <a href="https://neodraftsolutions.github.io/Dr.Karthik-Habib/" target="_blank" class="p-5 rounded-xl bg-dark-800 border border-white/5 hover:border-neon-cyan hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(6,182,212,0.2)] transition-all flex flex-col gap-3 group">
-                        <div class="w-10 h-10 rounded-lg bg-neon-cyan/10 flex items-center justify-center text-neon-cyan mb-2">
-                            <i data-lucide="stethoscope" class="w-5 h-5"></i>
+                    <a href="https://neodraftsolutions.github.io/Dr.Karthik-Habib/" target="_blank" class="rounded-xl overflow-hidden border border-white/5 hover:border-neon-cyan hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(6,182,212,0.25)] transition-all group flex flex-col">
+                        <div class="h-28 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, #0e2a2f, #1a3a30);">
+                            <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, rgba(6,182,212,0.2) 0px, rgba(6,182,212,0.2) 1px, transparent 1px, transparent 12px);"></div>
+                            <div class="text-center z-10">
+                                <div class="w-12 h-12 rounded-full bg-neon-cyan/20 border border-neon-cyan/40 flex items-center justify-center mx-auto mb-2">
+                                    <i data-lucide="stethoscope" class="w-6 h-6 text-neon-cyan"></i>
+                                </div>
+                                <span class="text-xs text-neon-cyan/70 font-medium uppercase tracking-widest">Clinic</span>
+                            </div>
                         </div>
-                        <div>
-                            <span class="text-white font-bold text-lg group-hover:text-neon-cyan transition-colors block">Dr. Karthik Habib</span>
-                            <span class="text-sm text-gray-400">Clinic & Practice Website</span>
+                        <div class="p-4 bg-dark-800 flex-1 flex flex-col gap-1">
+                            <span class="text-white font-bold group-hover:text-neon-cyan transition-colors">Dr. Karthik Habib</span>
+                            <span class="text-xs text-gray-400">Clinic & Practice Website</span>
+                            <span class="text-xs font-semibold text-neon-cyan flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
                         </div>
-                        <span class="text-xs font-semibold text-neon-cyan flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
                     </a>
 
                     <!-- Link 4 -->
-                    <a href="https://neodraftsolutions.github.io/sanjivani-clinic/" target="_blank" class="p-5 rounded-xl bg-dark-800 border border-white/5 hover:border-neon-cyan hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(6,182,212,0.2)] transition-all flex flex-col gap-3 group">
-                        <div class="w-10 h-10 rounded-lg bg-neon-cyan/10 flex items-center justify-center text-neon-cyan mb-2">
-                            <i data-lucide="building-2" class="w-5 h-5"></i>
+                    <a href="https://neodraftsolutions.github.io/sanjivani-clinic/" target="_blank" class="rounded-xl overflow-hidden border border-white/5 hover:border-neon-cyan hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(6,182,212,0.25)] transition-all group flex flex-col">
+                        <div class="h-28 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, #1a1a0e, #2a3a10);">
+                            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 50% 50%, rgba(34,197,94,0.5) 0%, transparent 70%);"></div>
+                            <div class="text-center z-10">
+                                <div class="w-12 h-12 rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center mx-auto mb-2">
+                                    <i data-lucide="building-2" class="w-6 h-6 text-green-400"></i>
+                                </div>
+                                <span class="text-xs text-green-400/70 font-medium uppercase tracking-widest">Healthcare</span>
+                            </div>
                         </div>
-                        <div>
-                            <span class="text-white font-bold text-lg group-hover:text-neon-cyan transition-colors block">Sanjivani Clinic</span>
-                            <span class="text-sm text-gray-400">Dr. Sanjay M Kalburgi</span>
+                        <div class="p-4 bg-dark-800 flex-1 flex flex-col gap-1">
+                            <span class="text-white font-bold group-hover:text-green-400 transition-colors">Sanjivani Clinic</span>
+                            <span class="text-xs text-gray-400">Dr. Sanjay M Kalburgi</span>
+                            <span class="text-xs font-semibold text-green-400 flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
                         </div>
-                        <span class="text-xs font-semibold text-neon-cyan flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
                     </a>
 
                     <!-- Link 5 -->
-                    <a href="https://mayurdamamgar-commits.github.io/drcc-portfolio/" target="_blank" class="p-5 rounded-xl bg-dark-800 border border-white/5 hover:border-neon-purple hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(139,92,246,0.2)] transition-all flex flex-col gap-3 group sm:col-span-2">
-                        <div class="w-10 h-10 rounded-lg bg-neon-purple/10 flex items-center justify-center text-neon-purple mb-2">
-                            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                    <a href="https://mayurdamamgar-commits.github.io/drcc-portfolio/" target="_blank" class="rounded-xl overflow-hidden border border-white/5 hover:border-neon-purple hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(139,92,246,0.25)] transition-all group flex flex-col sm:col-span-2">
+                        <div class="h-28 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, #1a0f2e, #2e1a4a);">
+                            <div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(circle at 20% 50%, rgba(139,92,246,0.6) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(59,130,246,0.4) 0%, transparent 50%);"></div>
+                            <div class="text-center z-10">
+                                <div class="w-12 h-12 rounded-full bg-neon-purple/20 border border-neon-purple/40 flex items-center justify-center mx-auto mb-2">
+                                    <i data-lucide="graduation-cap" class="w-6 h-6 text-neon-purple"></i>
+                                </div>
+                                <span class="text-xs text-neon-purple/70 font-medium uppercase tracking-widest">Academic</span>
+                            </div>
                         </div>
-                        <div>
-                            <span class="text-white font-bold text-lg group-hover:text-neon-purple transition-colors block">College Project Portfolio</span>
-                            <span class="text-sm text-gray-400">Academic showcase platform</span>
+                        <div class="p-4 bg-dark-800 flex-1 flex flex-col gap-1">
+                            <span class="text-white font-bold group-hover:text-neon-purple transition-colors">College Project Portfolio</span>
+                            <span class="text-xs text-gray-400">Academic showcase platform</span>
+                            <span class="text-xs font-semibold text-neon-purple flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
                         </div>
-                        <span class="text-xs font-semibold text-neon-purple flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
                     </a>
 
                 </div>
@@ -646,6 +736,150 @@
             </div>
         </div>
     </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 relative overflow-hidden border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14 reveal">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">What Our Customers Say</h2>
+                <div class="w-20 h-1 bg-neon-cyan mx-auto rounded-full neon-border"></div>
+            </div>
+
+            <!-- Auto-scrolling testimonials -->
+            <div class="overflow-hidden relative">
+                <!-- Fade edges -->
+                <div class="absolute left-0 top-0 h-full w-16 z-10" style="background: linear-gradient(to right, #0a0a0a, transparent);"></div>
+                <div class="absolute right-0 top-0 h-full w-16 z-10" style="background: linear-gradient(to left, #0a0a0a, transparent);"></div>
+
+                <div class="testimonial-track">
+                    <!-- Cards duplicated for seamless loop -->
+                    <!-- Card 1 -->
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Got my NFC business card made — it's super sleek. Everyone who sees it is impressed. Highly recommend Neo Draft!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-neon-cyan/20 border border-neon-cyan/30 flex items-center justify-center text-neon-cyan font-bold text-sm">RK</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Rahul K.</p>
+                                <p class="text-gray-500 text-xs">Business Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"They built my clinic website in just a few days. Clean design, mobile-friendly, exactly what I needed. Great work!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-neon-blue/20 border border-neon-blue/30 flex items-center justify-center text-neon-blue font-bold text-sm">DS</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Dr. Sneha M.</p>
+                                <p class="text-gray-500 text-xs">Dentist, Bengaluru</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Ordered NFC keychains in bulk for my team. The quality was excellent and delivery was fast. Will order again!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-neon-purple/20 border border-neon-purple/30 flex items-center justify-center text-neon-purple font-bold text-sm">AP</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Aditya P.</p>
+                                <p class="text-gray-500 text-xs">Startup Founder</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"The neon board for my shop looks absolutely stunning at night. So many customers ask where I got it from!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-yellow-500/20 border border-yellow-500/30 flex items-center justify-center text-yellow-400 font-bold text-sm">MR</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Mohammed R.</p>
+                                <p class="text-gray-500 text-xs">Café Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Super responsive team on WhatsApp. Got my acrylic trophies made for our college event. Beautiful finish!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-green-500/20 border border-green-500/30 flex items-center justify-center text-green-400 font-bold text-sm">PJ</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Priya J.</p>
+                                <p class="text-gray-500 text-xs">Event Coordinator</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicate for seamless scroll -->
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Got my NFC business card made — it's super sleek. Everyone who sees it is impressed. Highly recommend Neo Draft!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-neon-cyan/20 border border-neon-cyan/30 flex items-center justify-center text-neon-cyan font-bold text-sm">RK</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Rahul K.</p>
+                                <p class="text-gray-500 text-xs">Business Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"They built my clinic website in just a few days. Clean design, mobile-friendly, exactly what I needed. Great work!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-neon-blue/20 border border-neon-blue/30 flex items-center justify-center text-neon-blue font-bold text-sm">DS</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Dr. Sneha M.</p>
+                                <p class="text-gray-500 text-xs">Dentist, Bengaluru</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Ordered NFC keychains in bulk for my team. The quality was excellent and delivery was fast. Will order again!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-neon-purple/20 border border-neon-purple/30 flex items-center justify-center text-neon-purple font-bold text-sm">AP</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Aditya P.</p>
+                                <p class="text-gray-500 text-xs">Startup Founder</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"The neon board for my shop looks absolutely stunning at night. So many customers ask where I got it from!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-yellow-500/20 border border-yellow-500/30 flex items-center justify-center text-yellow-400 font-bold text-sm">MR</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Mohammed R.</p>
+                                <p class="text-gray-500 text-xs">Café Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Super responsive team on WhatsApp. Got my acrylic trophies made for our college event. Beautiful finish!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-green-500/20 border border-green-500/30 flex items-center justify-center text-green-400 font-bold text-sm">PJ</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Priya J.</p>
+                                <p class="text-gray-500 text-xs">Event Coordinator</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center text-gray-600 text-xs mt-8">* Reviews are representative of customer feedback. Replace with your real reviews anytime.</p>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-dark-800 border border-neon-cyan text-neon-cyan flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:bg-neon-cyan hover:text-dark-900 transition-all" aria-label="Back to top">
+        <i data-lucide="chevron-up" class="w-5 h-5"></i>
+    </button>
 
     <!-- Footer -->
     <footer class="bg-dark-900 py-12 border-t border-white/5 relative z-10">
@@ -842,7 +1076,15 @@
             if(e.target === this) closePortfolioModal();
         });
 
-        // 8. Save Contact (VCard Download)
+        // 9. Back to Top Button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
         function downloadVCard() {
             const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Neo Draft Solutions\nORG:Neo Draft Solutions\nTEL;TYPE=WORK,VOICE:+917483232936\nEND:VCARD`;
             const blob = new Blob([vcard], { type: 'text/vcard' });
