@@ -115,14 +115,8 @@
             overflow-x: hidden;
         }
         
-        .neon-text {
-            text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
-        }
-        
-        .neon-border {
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
-        }
-        
+        .neon-text { text-shadow: 0 0 20px rgba(6, 182, 212, 0.5); }
+        .neon-border { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
         .neon-border:hover {
             box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
             border-color: #06b6d4;
@@ -132,7 +126,6 @@
             box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
             transition: all 0.3s ease;
         }
-        
         .neon-button:hover {
             box-shadow: 0 0 30px rgba(6, 182, 212, 0.8);
             transform: translateY(-2px);
@@ -181,26 +174,6 @@
             transform: translateY(0);
         }
 
-        /* Image placeholder fallback styling */
-        .img-container {
-            background: linear-gradient(45deg, #121212, #1a1a1a);
-            position: relative;
-        }
-        .img-container::after {
-            content: 'Image Area';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #4b5563;
-            font-size: 0.875rem;
-            z-index: 1;
-        }
-        .img-container img {
-            position: relative;
-            z-index: 2;
-        }
-
         /* Back to Top Button */
         #back-to-top {
             opacity: 0;
@@ -236,37 +209,14 @@
             border: 1px solid rgba(6,182,212,0.25);
         }
 
-        /* Portfolio preview card */
-        .portfolio-preview {
-            background: linear-gradient(135deg, var(--from), var(--to));
-        }
         @media (max-width: 768px) {
-            /* Larger touch targets for all buttons/links */
             a, button { min-height: 44px; }
-
-            /* Hero heading size for small screens */
             h1 { font-size: 2.4rem !important; line-height: 1.15 !important; }
-
-            /* Product card thumbnails easier to tap */
-            .thumb-img { width: 3.5rem !important; height: 3.5rem !important; }
-
-            /* Special offer badge wraps nicely */
             .neon-button { font-size: 1rem !important; }
-
-            /* Contact section buttons full width on mobile */
-            #contact .flex-col a,
-            #contact .flex-col button { width: 100% !important; }
-
-            /* About section grid stacks cleanly */
+            #contact .flex-col a, #contact .flex-col button { width: 100% !important; }
             #about .grid { gap: 2rem !important; }
-
-            /* Particle canvas subtle on mobile */
             #particle-canvas { opacity: 0.2 !important; }
-
-            /* Portfolio modal better on small screens */
             #portfolio-modal-content { padding: 1.25rem !important; }
-
-            /* Reduce ambient glow size on mobile */
             .ambient-glow { width: 12rem !important; height: 12rem !important; opacity: 0.1 !important; }
         }
 
@@ -289,12 +239,74 @@
         .custom-scrollbar::-webkit-scrollbar { height: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #121212; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+
+        /* Hide scrollbar completely for sliders */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Splash Screen Animation */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background-color: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+        #splash-screen.fade-bg {
+            background-color: transparent;
+            pointer-events: none;
+        }
+        #splash-logo-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+        .splash-hex {
+            position: absolute;
+            inset: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: drawHex 1.2s ease-in-out forwards;
+            transition: opacity 0.4s ease;
+        }
+        @keyframes drawHex {
+            to { stroke-dashoffset: 0; }
+        }
+        .splash-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            filter: drop-shadow(0 0 25px rgba(6,182,212,0.8));
+            animation: fadeInLogo 0.8s ease-out 0.8s forwards;
+        }
+        @keyframes fadeInLogo {
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-neon-cyan selection:text-dark-900">
 
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div id="splash-logo-container">
+            <!-- Animated SVG Hexagon Outline -->
+            <svg class="splash-hex" viewBox="0 0 100 100" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="50,2 91,25 91,75 50,98 9,75 9,25" />
+            </svg>
+            <!-- Fade-in Logo -->
+            <img src="neo-removebg-preview.png" alt="Neo Draft Logo" class="splash-img">
+        </div>
+    </div>
+
     <!-- Interactive Mouse Glow (Desktop Only) -->
-    <div id="mouse-glow" class="hidden lg:block fixed w-96 h-96 bg-neon-cyan/10 rounded-full pointer-events-none z-[9999] blur-[80px] transition-transform duration-300 ease-out -translate-x-1/2 -translate-y-1/2" style="left: -200px; top: -200px;"></div>
+    <div id="mouse-glow" class="hidden md:block fixed w-96 h-96 bg-neon-cyan/10 rounded-full pointer-events-none z-[9999] blur-[80px] transition-transform duration-300 ease-out -translate-x-1/2 -translate-y-1/2" style="left: -200px; top: -200px;"></div>
 
     <!-- Tech Particle Network Background -->
     <canvas id="particle-canvas" class="fixed inset-0 z-[-1] pointer-events-none opacity-40"></canvas>
@@ -308,8 +320,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center gap-3">
-                    <!-- NEW LOGO -->
-                    <img src="neo-removebg-preview.png" alt="Neo Draft Solutions Logo" class="w-10 h-10 object-contain drop-shadow-[0_0_12px_rgba(6,182,212,0.6)]">
+                    <img id="nav-logo" src="neo-removebg-preview.png" alt="Neo Draft Solutions Logo" class="w-10 h-10 object-contain drop-shadow-[0_0_12px_rgba(6,182,212,0.6)]" style="opacity: 0; transition: opacity 0.3s ease;">
                     <span class="font-display font-bold text-xl tracking-tight text-white">Neo Draft<span class="text-neon-cyan">.</span></span>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
@@ -317,7 +328,7 @@
                     <a href="#products" class="text-gray-300 hover:text-neon-cyan transition-colors text-sm font-medium">Products</a>
                     <a href="#about" class="text-gray-300 hover:text-neon-cyan transition-colors text-sm font-medium">About</a>
                     <a href="#contact" class="text-gray-300 hover:text-neon-cyan transition-colors text-sm font-medium">Contact</a>
-                    <a href="https://wa.me/917483232936" target="_blank" class="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full transition-all text-sm font-medium">
+                    <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%91%8B%20I%20visited%20your%20website%20and%20I%27m%20interested%20in%20your%20services.%20Let%27s%20chat!" target="_blank" class="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full transition-all text-sm font-medium">
                         <i data-lucide="message-circle" class="w-4 h-4 text-green-400"></i>
                         Chat Now
                     </a>
@@ -337,7 +348,7 @@
                 <a href="#products" class="mobile-link text-gray-300 hover:text-neon-cyan hover:bg-white/5 transition-colors text-base font-medium px-4 py-3 rounded-xl">Products</a>
                 <a href="#about" class="mobile-link text-gray-300 hover:text-neon-cyan hover:bg-white/5 transition-colors text-base font-medium px-4 py-3 rounded-xl">About</a>
                 <a href="#contact" class="mobile-link text-gray-300 hover:text-neon-cyan hover:bg-white/5 transition-colors text-base font-medium px-4 py-3 rounded-xl">Contact</a>
-                <a href="https://wa.me/917483232936" target="_blank" class="flex items-center justify-center gap-2 bg-neon-cyan/10 hover:bg-neon-cyan/20 border border-neon-cyan/30 text-neon-cyan px-4 py-3 rounded-xl transition-all text-base font-bold mt-3">
+                <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%91%8B%20I%20visited%20your%20website%20and%20I%27m%20interested%20in%20your%20services.%20Let%27s%20chat!" target="_blank" class="flex items-center justify-center gap-2 bg-neon-cyan/10 hover:bg-neon-cyan/20 border border-neon-cyan/30 text-neon-cyan px-4 py-3 rounded-xl transition-all text-base font-bold mt-3">
                     <i data-lucide="message-circle" class="w-5 h-5 text-green-400"></i>
                     Chat Now on WhatsApp
                 </a>
@@ -373,7 +384,7 @@
             </div>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://wa.me/917483232936" target="_blank" class="neon-button inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-cyan text-dark-900 font-bold rounded-lg text-lg">
+                <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%91%8B%20I%20visited%20your%20website%20and%20I%27m%20interested%20in%20your%20services.%20Let%27s%20chat!" target="_blank" class="neon-button inline-flex items-center justify-center gap-2 px-8 py-4 bg-neon-cyan text-dark-900 font-bold rounded-lg text-lg">
                     <i data-lucide="message-circle" class="w-5 h-5"></i>
                     Order on WhatsApp
                 </a>
@@ -393,159 +404,181 @@
                 <div class="w-20 h-1 bg-neon-cyan mx-auto rounded-full neon-border"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Changed to grid-cols-2 on mobile (sm breakpoint) -->
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
                 
                 <!-- Product 1: Professional Websites -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-neon-cyan/30 overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.1)] hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col product-gallery relative">
+                <div class="reveal group bg-dark-900 rounded-2xl border border-neon-cyan/30 overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.1)] hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col relative">
                     <!-- Offer Ribbon -->
-                    <div class="absolute top-4 right-0 bg-neon-gold text-dark-900 text-xs font-bold px-3 py-1 rounded-l-md z-10 shadow-lg flex items-center gap-1">
-                        <i data-lucide="gift" class="w-3 h-3"></i> FREE NFC CARD
+                    <div class="absolute top-2 sm:top-4 right-0 bg-neon-gold text-dark-900 text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-1 rounded-l-md z-20 shadow-lg flex items-center gap-1">
+                        <i data-lucide="gift" class="w-3 h-3"></i> <span class="hidden sm:inline">FREE</span> NFC CARD
                     </div>
 
-                    <div class="aspect-[4/3] img-container overflow-hidden bg-dark-800 relative">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Website+Development'" alt="Website Development" class="main-img w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
+                    <!-- Slider Image Area -->
+                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800">
+                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-1">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Website+Development'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Web Dev 1">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Medical+Websites'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Web Dev 2">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Business+Websites'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Web Dev 3">
+                        </div>
+                        <button onclick="scrollSlider('slider-1', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <button onclick="scrollSlider('slider-1', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden">
+                             <div class="w-8 h-1 rounded-full bg-white/50"></div> <!-- Swipe indicator for mobile -->
+                        </div>
                     </div>
-                    <div class="flex gap-2 p-3 bg-dark-800/50 overflow-x-auto custom-scrollbar border-b border-gray-800">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Web+Dev'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-neon-cyan opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-transform" onclick="swapImg(this)" alt="Thumb 1">
-                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/3b82f6?text=Medical+Websites'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 2">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/8b5cf6?text=Business+Websites'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 3">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">1️⃣ Professional Websites</h3>
-                        <p class="text-gray-300 text-sm mb-1">Custom websites for businesses, doctors & engineers.</p>
-                        <p class="text-green-400 font-bold text-sm mb-4">50% OFF - Only ₹5,000/- <span class="text-gray-500 font-normal text-xs">(Negotiable)</span></p>
+
+                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">1️⃣ Professional Websites</h3>
+                        <p class="text-gray-300 text-xs sm:text-sm mb-1 hidden sm:block">Custom websites for businesses, doctors & engineers.</p>
+                        <p class="text-green-400 font-bold text-[10px] sm:text-sm mb-2 sm:mb-4">50% OFF - ₹5,000/- <span class="text-gray-500 font-normal hidden sm:inline">(Negotiable)</span></p>
                         
-                        <div class="mb-5 flex-1 flex flex-col justify-center">
-                            <button onclick="openPortfolioModal()" class="w-full flex items-center justify-between px-4 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all group/btn">
-                                <span class="text-sm font-semibold text-white group-hover/btn:text-neon-cyan transition-colors">Our Past Websites</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4 text-gray-400 group-hover/btn:text-neon-cyan transform group-hover/btn:translate-x-1 transition-all"></i>
+                        <div class="mb-2 sm:mb-5 flex-1 flex flex-col justify-center">
+                            <button onclick="openPortfolioModal()" class="w-full flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg sm:rounded-xl transition-all group/btn">
+                                <span class="text-[10px] sm:text-sm font-semibold text-white group-hover/btn:text-neon-cyan transition-colors">Our Past Websites</span>
+                                <i data-lucide="arrow-right" class="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 group-hover/btn:text-neon-cyan transform group-hover/btn:translate-x-1 transition-all"></i>
                             </button>
                         </div>
 
-                        <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20a%20Professional%20Website%20with%20the%20Free%20NFC%20Card%20Offer" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-neon-cyan text-dark-900 rounded-lg font-bold transition-colors hover:bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
-                            <i data-lucide="message-circle" class="w-4 h-4"></i> Claim Offer on WhatsApp
+                        <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%9A%80%20I%27m%20interested%20in%20getting%20a%20Professional%20Website%20along%20with%20the%20FREE%20NFC%20Card%20offer.%20Can%20you%20share%20more%20details%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-neon-cyan text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-bold transition-colors hover:bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">Claim Offer on</span> WhatsApp
                         </a>
                     </div>
                 </div>
 
-                <!-- Product 2 -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col product-gallery" style="transition-delay: 100ms;">
-                    <div class="aspect-[4/3] img-container overflow-hidden bg-dark-800 relative">
-                        <img src="6_f317effb-8c9e-4b53-9be3-6d66d81e163c.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=NFC+Keychain+1'" alt="NFC Keychain" class="main-img w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                    </div>
-                    <div class="flex gap-2 p-3 bg-dark-800/50 overflow-x-auto custom-scrollbar border-b border-gray-800">
-                        <img src="6_f317effb-8c9e-4b53-9be3-6d66d81e163c.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=NFC+Keychain+1'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-neon-cyan opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-transform" onclick="swapImg(this)" alt="Thumb 1">
-                        <img src="09f71d1a43691f4bf67d2b84bcb2b3d2.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/3b82f6?text=NFC+Keychain+2'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 2">
-                        <img src="1435aec03c8aaecdc222f6f2e2b86924.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/8b5cf6?text=NFC+Keychain+3'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 3">
-                        <img src="He8e54d381d1b4f038f2cf27c07e40a9cQ.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/ec4899?text=NFC+Keychain+4'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 4">
-                        <img src="Instantly-Contactless-Sharing-Social-Media-Lost-Found-Phone-NFC-Keychain.webp" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/eab308?text=NFC+Keychain+5'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 5">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">2️⃣ NFC Keychains</h3>
-                        <p class="text-gray-400 text-sm mb-3 flex-1">Tap-enabled keychains for quick digital sharing. Seamlessly connect without apps.</p>
-                        <div class="price-tag rounded-xl p-3 mb-4 space-y-1">
-                            <p class="text-neon-cyan font-bold text-sm">₹150/keychain <span class="text-gray-400 font-normal">(25 units, custom design)</span></p>
-                            <p class="text-neon-cyan font-bold text-sm">₹120/keychain <span class="text-gray-400 font-normal">(50 units, custom design)</span></p>
+                <!-- Product 2: NFC Keychains -->
+                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 100ms;">
+                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800">
+                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-2">
+                            <img src="6_f317effb-8c9e-4b53-9be3-6d66d81e163c.jpeg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Keychain'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Keychain 1">
+                            <img src="09f71d1a43691f4bf67d2b84bcb2b3d2.jpeg" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Keychain'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Keychain 2">
+                            <img src="1435aec03c8aaecdc222f6f2e2b86924.jpeg" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Keychain'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Keychain 3">
+                            <img src="He8e54d381d1b4f038f2cf27c07e40a9cQ.jpeg" onerror="this.src='https://placehold.co/800x600/121212/ec4899?text=Keychain'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Keychain 4">
+                            <img src="Instantly-Contactless-Sharing-Social-Media-Lost-Found-Phone-NFC-Keychain.webp" onerror="this.src='https://placehold.co/800x600/121212/eab308?text=Keychain'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Keychain 5">
                         </div>
-                        <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20NFC%20Keychains" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                            <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
+                        <button onclick="scrollSlider('slider-2', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <button onclick="scrollSlider('slider-2', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden"><div class="w-8 h-1 rounded-full bg-white/50"></div></div>
+                    </div>
+
+                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">2️⃣ NFC Keychains</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Tap-enabled keychains for quick digital sharing. No apps required.</p>
+                        <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4 space-y-1">
+                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹150/unit <span class="text-gray-400 font-normal hidden sm:inline">(25 units min)</span></p>
+                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm hidden sm:block">₹120/unit <span class="text-gray-400 font-normal">(50 units min)</span></p>
+                        </div>
+                        <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%91%8B%20I%27m%20looking%20to%20order%20custom%20NFC%20Keychains.%20Could%20we%20discuss%20the%20designs%20and%20pricing%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
+                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Product 3 -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col product-gallery" style="transition-delay: 200ms;">
-                    <div class="aspect-[4/3] img-container overflow-hidden bg-dark-800 relative">
-                        <img src="file_00000000a18871fab8040eafc15db01b.png" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Business+Cards+1'" alt="NFC Business Card" class="main-img w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                    </div>
-                    <div class="flex gap-2 p-3 bg-dark-800/50 overflow-x-auto custom-scrollbar border-b border-gray-800">
-                        <img src="file_00000000a18871fab8040eafc15db01b.png" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Business+Cards+1'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-neon-cyan opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-transform" onclick="swapImg(this)" alt="Thumb 1">
-                        <img src="4b8bd393dc1285ff77379d9bf111d9a4.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/3b82f6?text=Business+Cards+2'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 2">
-                        <img src="8b978bd4209bf45e3376995670bd0301.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/8b5cf6?text=Business+Cards+3'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 3">
-                        <img src="6fb7d728e5be79e33a2a6e1b43048256.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/ec4899?text=Business+Cards+4'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 4">
-                        <img src="ff4c0d32ca8615bd9f64a976898cf6f7.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/eab308?text=Business+Cards+5'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 5">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">3️⃣ NFC Business Cards</h3>
-                        <p class="text-gray-400 text-sm mb-3 flex-1">Smart digital business cards connected to your personal website or portfolio.</p>
-                        <div class="price-tag rounded-xl p-3 mb-4 space-y-1">
-                            <p class="text-neon-cyan font-bold text-sm">₹350/card <span class="text-gray-400 font-normal">(custom design + your link)</span></p>
-                            <p class="text-neon-cyan font-bold text-sm">₹350/card + website charges <span class="text-gray-400 font-normal">(with website built by us)</span></p>
+                <!-- Product 3: Business Cards -->
+                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 200ms;">
+                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800">
+                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-3">
+                            <img src="file_00000000a18871fab8040eafc15db01b.png" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Business+Card'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Card 1">
+                            <img src="4b8bd393dc1285ff77379d9bf111d9a4.jpeg" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Business+Card'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Card 2">
+                            <img src="8b978bd4209bf45e3376995670bd0301.jpeg" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Business+Card'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Card 3">
+                            <img src="6fb7d728e5be79e33a2a6e1b43048256.jpeg" onerror="this.src='https://placehold.co/800x600/121212/ec4899?text=Business+Card'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Card 4">
+                            <img src="ff4c0d32ca8615bd9f64a976898cf6f7.jpeg" onerror="this.src='https://placehold.co/800x600/121212/eab308?text=Business+Card'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Card 5">
                         </div>
-                        <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20NFC%20Business%20Cards" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                            <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
+                        <button onclick="scrollSlider('slider-3', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <button onclick="scrollSlider('slider-3', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden"><div class="w-8 h-1 rounded-full bg-white/50"></div></div>
+                    </div>
+
+                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">3️⃣ NFC Business Cards</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Smart digital business cards connected to your website/portfolio.</p>
+                        <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4 space-y-1">
+                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹350/card <span class="text-gray-400 font-normal hidden sm:inline">(custom design)</span></p>
+                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm hidden sm:block">+ Website charges <span class="text-gray-400 font-normal">(if built by us)</span></p>
+                        </div>
+                        <a href="https://wa.me/917483232936?text=Hello!%20%F0%9F%8C%9F%20I%27d%20like%20to%20upgrade%20to%20smart%20NFC%20Business%20Cards.%20Can%20you%20share%20some%20design%20samples%20and%20pricing%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
+                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Product 4 -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col product-gallery">
-                    <div class="aspect-[4/3] img-container overflow-hidden bg-dark-800 relative">
-                        <img src="f37e60c4326e292c58d7b5b7213ec464.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Neon+Boards+1'" alt="Neon Name Board" class="main-img w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                    </div>
-                    <div class="flex gap-2 p-3 bg-dark-800/50 overflow-x-auto custom-scrollbar border-b border-gray-800">
-                        <img src="f37e60c4326e292c58d7b5b7213ec464.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Neon+Boards+1'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-neon-cyan opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-transform" onclick="swapImg(this)" alt="Thumb 1">
-                        <img src="2b048236546eef6a8cba4f05978b2e32.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/3b82f6?text=Neon+Boards+2'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 2">
-                        <img src="Screenshot_20260304-220814_Gallery.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/8b5cf6?text=Neon+Boards+3'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 3">
-                        <img src="5498d19ff61bdf289d3c5d435511ddce.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/ec4899?text=Neon+Boards+4'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 4">
-                        <img src="086071215e25c2f82a3bb1ca5cf1dc68.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/eab308?text=Neon+Boards+5'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-[.5] hover:opacity-[.9] thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 5">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">4️⃣ Neon Name Boards</h3>
-                        <p class="text-gray-400 text-sm mb-3 flex-1">Custom LED neon signs for homes, businesses, events, and interior décor.</p>
-                        <div class="price-tag rounded-xl p-3 mb-4">
-                            <p class="text-neon-cyan font-bold text-sm">₹2,000 <span class="text-gray-400 font-normal">(2×1.5 ft board + adapter included)</span></p>
+                <!-- Product 4: Neon Boards -->
+                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col">
+                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800">
+                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-4">
+                            <img src="f37e60c4326e292c58d7b5b7213ec464.jpeg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Neon+Board'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Neon 1">
+                            <img src="2b048236546eef6a8cba4f05978b2e32.jpeg" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Neon+Board'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Neon 2">
+                            <img src="Screenshot_20260304-220814_Gallery.jpeg" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Neon+Board'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Neon 3">
+                            <img src="5498d19ff61bdf289d3c5d435511ddce.jpeg" onerror="this.src='https://placehold.co/800x600/121212/ec4899?text=Neon+Board'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Neon 4">
+                            <img src="086071215e25c2f82a3bb1ca5cf1dc68.jpeg" onerror="this.src='https://placehold.co/800x600/121212/eab308?text=Neon+Board'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Neon 5">
                         </div>
-                        <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20Neon%20Name%20Boards" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                            <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
+                        <button onclick="scrollSlider('slider-4', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <button onclick="scrollSlider('slider-4', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden"><div class="w-8 h-1 rounded-full bg-white/50"></div></div>
+                    </div>
+
+                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">4️⃣ Neon Name Boards</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Custom LED neon signs for homes, businesses, and décor.</p>
+                        <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
+                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹2,000 <span class="text-gray-400 font-normal hidden sm:inline">(2×1.5 ft board + adapter)</span></p>
+                        </div>
+                        <a href="https://wa.me/917483232936?text=Hi%20there!%20%E2%9C%A8%20I%27m%20interested%20in%20getting%20a%20custom%20Neon%20Name%20Board.%20Can%20I%20share%20my%20design%20idea%20for%20a%20quote%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
+                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Product 5 -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col product-gallery" style="transition-delay: 100ms;">
-                    <div class="aspect-[4/3] img-container overflow-hidden bg-dark-800 relative">
-                        <img src="laser3.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Laser+Cutting+1'" alt="Acrylic Laser Cutting" class="main-img w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                    </div>
-                    <div class="flex gap-2 p-3 bg-dark-800/50 overflow-x-auto custom-scrollbar border-b border-gray-800">
-                        <img src="laser3.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Laser+Cutting+1'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-neon-cyan opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-transform" onclick="swapImg(this)" alt="Thumb 1">
-                        <img src="Acrylic_laser_cutting.png" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/3b82f6?text=Laser+Cutting+2'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 2">
-                        <img src="Figure-1-Laser-cutting-acrylic-sheet-1024x576.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/8b5cf6?text=Laser+Cutting+3'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 3">
-                        <img src="can-you-laser-cut-polyethylene-(3).jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/ec4899?text=Laser+Cutting+4'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 4">
-                        <img src="AoM-snijden-platen.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/eab308?text=Laser+Cutting+5'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 5">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">5️⃣ Acrylic Laser Cutting</h3>
-                        <p class="text-gray-400 text-sm mb-3 flex-1">Precision laser cutting for acrylic boards, signage, and custom industrial designs.</p>
-                        <div class="price-tag rounded-xl p-3 mb-4">
-                            <p class="text-neon-cyan font-bold text-sm">₹15/minute <span class="text-gray-400 font-normal">(machine time, based on complexity)</span></p>
+                <!-- Product 5: Laser Cutting -->
+                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 100ms;">
+                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800">
+                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-5">
+                            <img src="laser3.jpg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Laser+Cut'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Laser 1">
+                            <img src="Acrylic_laser_cutting.png" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Laser+Cut'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Laser 2">
+                            <img src="Figure-1-Laser-cutting-acrylic-sheet-1024x576.jpeg" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Laser+Cut'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Laser 3">
+                            <img src="can-you-laser-cut-polyethylene-(3).jpg" onerror="this.src='https://placehold.co/800x600/121212/ec4899?text=Laser+Cut'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Laser 4">
+                            <img src="AoM-snijden-platen.jpg" onerror="this.src='https://placehold.co/800x600/121212/eab308?text=Laser+Cut'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Laser 5">
                         </div>
-                        <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20Acrylic%20Laser%20Cutting" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                            <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
+                        <button onclick="scrollSlider('slider-5', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <button onclick="scrollSlider('slider-5', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden"><div class="w-8 h-1 rounded-full bg-white/50"></div></div>
+                    </div>
+
+                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">5️⃣ Acrylic Laser Cutting</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Precision laser cutting for acrylic boards, signage, and designs.</p>
+                        <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
+                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹15/minute <span class="text-gray-400 font-normal hidden sm:inline">(machine time)</span></p>
+                        </div>
+                        <a href="https://wa.me/917483232936?text=Hello!%20%F0%9F%9B%A0%EF%B8%8F%20I%20have%20a%20requirement%20for%20Acrylic%20Laser%20Cutting%20services.%20Can%20we%20discuss%20dimensions%20and%20pricing%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
+                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Product 6 -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col product-gallery" style="transition-delay: 200ms;">
-                    <div class="aspect-[4/3] img-container overflow-hidden bg-dark-800 relative">
-                        <img src="d917ca71c27a199204b4f75597f3abb6.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Custom+Acrylic+1'" alt="Custom Acrylic Products" class="main-img w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                    </div>
-                    <div class="flex gap-2 p-3 bg-dark-800/50 overflow-x-auto custom-scrollbar border-b border-gray-800">
-                        <img src="d917ca71c27a199204b4f75597f3abb6.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/06b6d4?text=Custom+Acrylic+1'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-neon-cyan opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-transform" onclick="swapImg(this)" alt="Thumb 1">
-                        <img src="acrylic-laser-cutting.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/3b82f6?text=Custom+Acrylic+2'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 2">
-                        <img src="cd9c0cb618.webp" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/8b5cf6?text=Custom+Acrylic+3'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 3">
-                        <img src="63c231c4a63ef15943b4a296f7f42154.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/ec4899?text=Custom+Acrylic+4'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 4">
-                        <img src="bd40549ad3264ba73fa100e5d2cf1975.jpeg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/121212/eab308?text=Custom+Acrylic+5'" class="w-14 h-14 rounded-lg object-cover cursor-pointer border-2 border-transparent opacity-50 hover:opacity-100 thumb-img flex-shrink-0 hover:scale-110 transition-all" onclick="swapImg(this)" alt="Thumb 5">
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">6️⃣ Custom Acrylic Products</h3>
-                        <p class="text-gray-400 text-sm mb-3 flex-1">Personalized acrylic designs, awards, and displays for branding and décor.</p>
-                        <div class="price-tag rounded-xl p-3 mb-4">
-                            <p class="text-neon-cyan font-bold text-sm">Custom Quote <span class="text-gray-400 font-normal">(price depends on product & design)</span></p>
+                <!-- Product 6: Custom Acrylic -->
+                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 200ms;">
+                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800">
+                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-6">
+                            <img src="d917ca71c27a199204b4f75597f3abb6.jpg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Acrylic'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Acrylic 1">
+                            <img src="acrylic-laser-cutting.jpeg" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Acrylic'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Acrylic 2">
+                            <img src="cd9c0cb618.webp" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Acrylic'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Acrylic 3">
+                            <img src="63c231c4a63ef15943b4a296f7f42154.jpg" onerror="this.src='https://placehold.co/800x600/121212/ec4899?text=Acrylic'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Acrylic 4">
+                            <img src="bd40549ad3264ba73fa100e5d2cf1975.jpeg" onerror="this.src='https://placehold.co/800x600/121212/eab308?text=Acrylic'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Acrylic 5">
                         </div>
-                        <a href="https://wa.me/917483232936?text=Hi%20I%20want%20to%20order%20Custom%20Acrylic%20Products" target="_blank" class="w-full inline-flex items-center justify-center gap-2 py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-lg font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                            <i data-lucide="message-circle" class="w-4 h-4"></i> Order on WhatsApp
+                        <button onclick="scrollSlider('slider-6', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <button onclick="scrollSlider('slider-6', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
+                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden"><div class="w-8 h-1 rounded-full bg-white/50"></div></div>
+                    </div>
+
+                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">6️⃣ Custom Acrylic</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Personalized acrylic designs, awards, and displays for branding.</p>
+                        <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
+                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">Custom Quote <span class="text-gray-400 font-normal hidden sm:inline">(based on design)</span></p>
+                        </div>
+                        <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%8F%86%20I%27m%20interested%20in%20getting%20some%20Custom%20Acrylic%20Products%20made.%20Can%20I%20share%20my%20requirements%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
+                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
                         </a>
                     </div>
                 </div>
@@ -554,110 +587,125 @@
         </div>
     </section>
 
-    <!-- Portfolio Modal -->
-    <div id="portfolio-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/80 backdrop-blur-md p-4 opacity-0 transition-opacity duration-300">
-        <div class="bg-dark-900 border border-neon-cyan/30 rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-[0_0_40px_rgba(6,182,212,0.2)] transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]" id="portfolio-modal-content">
+    <!-- Professional Portfolio Modal -->
+    <div id="portfolio-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/85 backdrop-blur-lg p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-dark-900 border border-white/10 rounded-3xl max-w-4xl w-full p-6 sm:p-8 shadow-[0_0_50px_rgba(6,182,212,0.15)] transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]" id="portfolio-modal-content">
             
             <div class="flex justify-between items-center mb-6 pb-4 border-b border-white/10">
                 <div>
-                    <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">Our Past Websites</h3>
-                    <p class="text-sm text-gray-400 mt-1">Explore some of the premium websites we've developed.</p>
+                    <h3 class="font-display text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Our Premium Web Portfolio</h3>
+                    <p class="text-sm text-neon-cyan mt-1 font-medium">Explore some of the next-gen websites we've engineered.</p>
                 </div>
-                <button onclick="closePortfolioModal()" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-colors focus:outline-none">
-                    <i data-lucide="x" class="w-6 h-6"></i>
+                <button onclick="closePortfolioModal()" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white transition-all focus:outline-none hover:rotate-90">
+                    <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
             
-            <div class="overflow-y-auto custom-scrollbar flex-1 pr-2">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="overflow-y-auto custom-scrollbar flex-1 pr-2 pb-2">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
-                    <!-- Link 1 -->
-                    <a href="https://neodraftsolutions.github.io/dr-vinayak-hosamani/" target="_blank" class="rounded-xl overflow-hidden border border-white/5 hover:border-neon-cyan hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(6,182,212,0.25)] transition-all group flex flex-col">
-                        <div class="h-28 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, #0e2a2f, #0a3d3a);">
-                            <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(0deg,transparent,transparent 20px,rgba(6,182,212,0.3) 20px,rgba(6,182,212,0.3) 21px),repeating-linear-gradient(90deg,transparent,transparent 20px,rgba(6,182,212,0.3) 20px,rgba(6,182,212,0.3) 21px);"></div>
+                    <!-- Link 1: Vinayak -->
+                    <a href="https://neodraftsolutions.github.io/dr-vinayak-hosamani/" target="_blank" class="rounded-2xl overflow-hidden border border-white/5 hover:border-neon-cyan/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(6,182,212,0.2)] bg-white/[0.02] backdrop-blur-sm transition-all duration-300 group flex flex-col">
+                        <div class="h-32 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0e2a2f] to-[#0a3d3a]">
+                            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 50% 50%, #06b6d4 0%, transparent 70%);"></div>
                             <div class="text-center z-10">
-                                <div class="w-12 h-12 rounded-full bg-neon-cyan/20 border border-neon-cyan/40 flex items-center justify-center mx-auto mb-2">
+                                <div class="w-12 h-12 rounded-xl bg-neon-cyan/20 border border-neon-cyan/40 flex items-center justify-center mx-auto mb-2 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                                    <i data-lucide="briefcase" class="w-6 h-6 text-neon-cyan"></i>
+                                </div>
+                                <span class="text-[10px] text-neon-cyan/90 font-bold uppercase tracking-widest bg-black/30 px-3 py-1 rounded-full backdrop-blur-md">Professional</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col gap-1 relative">
+                            <span class="text-white font-bold text-lg group-hover:text-neon-cyan transition-colors">Dr. Vinayak S. Hosamani</span>
+                            <span class="text-sm text-gray-400">Entrepreneurial Leader</span>
+                            <span class="text-xs font-semibold text-neon-cyan flex items-center gap-1 mt-4 pt-3 border-t border-white/5"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Visit Live Site</span>
+                        </div>
+                    </a>
+
+                    <!-- Link 2: Vishwanath (New) -->
+                    <a href="https://neodraftsolutions.github.io/Vishwanath-somapur/" target="_blank" class="rounded-2xl overflow-hidden border border-white/5 hover:border-neon-blue/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(59,130,246,0.2)] bg-white/[0.02] backdrop-blur-sm transition-all duration-300 group flex flex-col">
+                        <div class="h-32 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0f172a] to-[#1e3a8a]">
+                            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 50% 50%, #3b82f6 0%, transparent 70%);"></div>
+                            <div class="text-center z-10">
+                                <div class="w-12 h-12 rounded-xl bg-neon-blue/20 border border-neon-blue/40 flex items-center justify-center mx-auto mb-2 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                                    <i data-lucide="building" class="w-6 h-6 text-neon-blue"></i>
+                                </div>
+                                <span class="text-[10px] text-neon-blue/90 font-bold uppercase tracking-widest bg-black/30 px-3 py-1 rounded-full backdrop-blur-md">Corporate</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col gap-1 relative">
+                            <span class="text-white font-bold text-lg group-hover:text-neon-blue transition-colors">Vishwanath Somapur</span>
+                            <span class="text-sm text-gray-400">Rakshaum Company MD</span>
+                            <span class="text-xs font-semibold text-neon-blue flex items-center gap-1 mt-4 pt-3 border-t border-white/5"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Visit Live Site</span>
+                        </div>
+                    </a>
+
+                    <!-- Link 3: Denissons Hotel (New) -->
+                    <a href="https://neodraftsolutions.github.io/hotel/" target="_blank" class="rounded-2xl overflow-hidden border border-white/5 hover:border-neon-gold/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(251,191,36,0.2)] bg-white/[0.02] backdrop-blur-sm transition-all duration-300 group flex flex-col">
+                        <div class="h-32 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#2a1b0a] to-[#5a4212]">
+                            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 50% 50%, #fbbf24 0%, transparent 70%);"></div>
+                            <div class="text-center z-10">
+                                <div class="w-12 h-12 rounded-xl bg-neon-gold/20 border border-neon-gold/40 flex items-center justify-center mx-auto mb-2 shadow-[0_0_15px_rgba(251,191,36,0.3)]">
+                                    <i data-lucide="nfc" class="w-6 h-6 text-neon-gold"></i>
+                                </div>
+                                <span class="text-[10px] text-neon-gold/90 font-bold uppercase tracking-widest bg-black/30 px-3 py-1 rounded-full backdrop-blur-md">Hospitality</span>
+                            </div>
+                        </div>
+                        <div class="p-5 flex-1 flex flex-col gap-1 relative">
+                            <span class="text-white font-bold text-lg group-hover:text-neon-gold transition-colors">Denissons Hotel</span>
+                            <span class="text-sm text-gray-400">Guest-Facing NFC Tap Page</span>
+                            <span class="text-xs font-semibold text-neon-gold flex items-center gap-1 mt-4 pt-3 border-t border-white/5"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Visit Live Site</span>
+                        </div>
+                    </a>
+
+                    <!-- Link 4: Karthik -->
+                    <a href="https://neodraftsolutions.github.io/Dr.Karthik-Habib/" target="_blank" class="rounded-2xl overflow-hidden border border-white/5 hover:border-neon-cyan/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(6,182,212,0.2)] bg-white/[0.02] backdrop-blur-sm transition-all duration-300 group flex flex-col">
+                        <div class="h-32 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#0e2a2f] to-[#1a3a30]">
+                            <div class="text-center z-10">
+                                <div class="w-12 h-12 rounded-xl bg-neon-cyan/20 border border-neon-cyan/40 flex items-center justify-center mx-auto mb-2 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
                                     <i data-lucide="stethoscope" class="w-6 h-6 text-neon-cyan"></i>
                                 </div>
-                                <span class="text-xs text-neon-cyan/70 font-medium uppercase tracking-widest">Medical</span>
+                                <span class="text-[10px] text-neon-cyan/90 font-bold uppercase tracking-widest bg-black/30 px-3 py-1 rounded-full backdrop-blur-md">Healthcare</span>
                             </div>
                         </div>
-                        <div class="p-4 bg-dark-800 flex-1 flex flex-col gap-1">
-                            <span class="text-white font-bold group-hover:text-neon-cyan transition-colors">Dr. Vinayak S. Hosamani</span>
-                            <span class="text-xs text-gray-400">Medical Professional Website</span>
-                            <span class="text-xs font-semibold text-neon-cyan flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
+                        <div class="p-5 flex-1 flex flex-col gap-1 relative">
+                            <span class="text-white font-bold text-lg group-hover:text-neon-cyan transition-colors">Dr. Karthik Habib</span>
+                            <span class="text-sm text-gray-400">Clinic & Practice Website</span>
+                            <span class="text-xs font-semibold text-neon-cyan flex items-center gap-1 mt-4 pt-3 border-t border-white/5"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Visit Live Site</span>
                         </div>
                     </a>
 
-                    <!-- Link 2 -->
-                    <a href="https://mayurdamamgar-commits.github.io/mayur-damamgar/" target="_blank" class="rounded-xl overflow-hidden border border-white/5 hover:border-neon-blue hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(59,130,246,0.25)] transition-all group flex flex-col">
-                        <div class="h-28 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, #0f172a, #1e3a5f);">
-                            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.6) 0%, transparent 60%), radial-gradient(circle at 70% 50%, rgba(139,92,246,0.4) 0%, transparent 60%);"></div>
+                    <!-- Link 5: Sanjeevini -->
+                    <a href="https://neodraftsolutions.github.io/sanjeevini-clinic/" target="_blank" class="rounded-2xl overflow-hidden border border-white/5 hover:border-green-500/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(34,197,94,0.2)] bg-white/[0.02] backdrop-blur-sm transition-all duration-300 group flex flex-col">
+                        <div class="h-32 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#1a2a1a] to-[#2a3a10]">
                             <div class="text-center z-10">
-                                <div class="w-12 h-12 rounded-full bg-neon-blue/20 border border-neon-blue/40 flex items-center justify-center mx-auto mb-2">
-                                    <i data-lucide="user" class="w-6 h-6 text-neon-blue"></i>
-                                </div>
-                                <span class="text-xs text-neon-blue/70 font-medium uppercase tracking-widest">Portfolio</span>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-dark-800 flex-1 flex flex-col gap-1">
-                            <span class="text-white font-bold group-hover:text-neon-blue transition-colors">Personal Portfolio</span>
-                            <span class="text-xs text-gray-400">Mayur Damamgar</span>
-                            <span class="text-xs font-semibold text-neon-blue flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
-                        </div>
-                    </a>
-
-                    <!-- Link 3 -->
-                    <a href="https://neodraftsolutions.github.io/Dr.Karthik-Habib/" target="_blank" class="rounded-xl overflow-hidden border border-white/5 hover:border-neon-cyan hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(6,182,212,0.25)] transition-all group flex flex-col">
-                        <div class="h-28 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, #0e2a2f, #1a3a30);">
-                            <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, rgba(6,182,212,0.2) 0px, rgba(6,182,212,0.2) 1px, transparent 1px, transparent 12px);"></div>
-                            <div class="text-center z-10">
-                                <div class="w-12 h-12 rounded-full bg-neon-cyan/20 border border-neon-cyan/40 flex items-center justify-center mx-auto mb-2">
-                                    <i data-lucide="stethoscope" class="w-6 h-6 text-neon-cyan"></i>
-                                </div>
-                                <span class="text-xs text-neon-cyan/70 font-medium uppercase tracking-widest">Clinic</span>
-                            </div>
-                        </div>
-                        <div class="p-4 bg-dark-800 flex-1 flex flex-col gap-1">
-                            <span class="text-white font-bold group-hover:text-neon-cyan transition-colors">Dr. Karthik Habib</span>
-                            <span class="text-xs text-gray-400">Clinic & Practice Website</span>
-                            <span class="text-xs font-semibold text-neon-cyan flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
-                        </div>
-                    </a>
-
-                    <!-- Link 4 -->
-                    <a href="https://neodraftsolutions.github.io/sanjeevini-clinic/" target="_blank" class="rounded-xl overflow-hidden border border-white/5 hover:border-neon-cyan hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(6,182,212,0.25)] transition-all group flex flex-col">
-                        <div class="h-28 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, #1a1a0e, #2a3a10);">
-                            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 50% 50%, rgba(34,197,94,0.5) 0%, transparent 70%);"></div>
-                            <div class="text-center z-10">
-                                <div class="w-12 h-12 rounded-full bg-green-500/20 border border-green-500/40 flex items-center justify-center mx-auto mb-2">
+                                <div class="w-12 h-12 rounded-xl bg-green-500/20 border border-green-500/40 flex items-center justify-center mx-auto mb-2 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
                                     <i data-lucide="building-2" class="w-6 h-6 text-green-400"></i>
                                 </div>
-                                <span class="text-xs text-green-400/70 font-medium uppercase tracking-widest">Healthcare</span>
+                                <span class="text-[10px] text-green-400/90 font-bold uppercase tracking-widest bg-black/30 px-3 py-1 rounded-full backdrop-blur-md">Clinic</span>
                             </div>
                         </div>
-                        <div class="p-4 bg-dark-800 flex-1 flex flex-col gap-1">
-                            <span class="text-white font-bold group-hover:text-green-400 transition-colors">Sanjeevini Clinic</span>
-                            <span class="text-xs text-gray-400">Dr. Sanjay M Kalburgi</span>
-                            <span class="text-xs font-semibold text-green-400 flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
+                        <div class="p-5 flex-1 flex flex-col gap-1 relative">
+                            <span class="text-white font-bold text-lg group-hover:text-green-400 transition-colors">Sanjeevini Clinic</span>
+                            <span class="text-sm text-gray-400">Dr. Sanjay M Kalburgi</span>
+                            <span class="text-xs font-semibold text-green-400 flex items-center gap-1 mt-4 pt-3 border-t border-white/5"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Visit Live Site</span>
                         </div>
                     </a>
 
-                    <!-- Link 5 -->
-                    <a href="https://mayurdamamgar-commits.github.io/drcc-portfolio/" target="_blank" class="rounded-xl overflow-hidden border border-white/5 hover:border-neon-purple hover:-translate-y-1 hover:shadow-[0_5px_20px_rgba(139,92,246,0.25)] transition-all group flex flex-col sm:col-span-2">
-                        <div class="h-28 flex items-center justify-center relative overflow-hidden" style="background: linear-gradient(135deg, #1a0f2e, #2e1a4a);">
-                            <div class="absolute inset-0 opacity-15" style="background-image: radial-gradient(circle at 20% 50%, rgba(139,92,246,0.6) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(59,130,246,0.4) 0%, transparent 50%);"></div>
+                    <!-- Link 6: Mayur Portfolio -->
+                    <a href="https://mayurdamamgar-commits.github.io/mayur-damamgar/" target="_blank" class="rounded-2xl overflow-hidden border border-white/5 hover:border-neon-purple/50 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(139,92,246,0.2)] bg-white/[0.02] backdrop-blur-sm transition-all duration-300 group flex flex-col">
+                        <div class="h-32 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#1a0f2e] to-[#2e1a4a]">
                             <div class="text-center z-10">
-                                <div class="w-12 h-12 rounded-full bg-neon-purple/20 border border-neon-purple/40 flex items-center justify-center mx-auto mb-2">
-                                    <i data-lucide="graduation-cap" class="w-6 h-6 text-neon-purple"></i>
+                                <div class="w-12 h-12 rounded-xl bg-neon-purple/20 border border-neon-purple/40 flex items-center justify-center mx-auto mb-2 shadow-[0_0_15px_rgba(139,92,246,0.3)]">
+                                    <i data-lucide="user" class="w-6 h-6 text-neon-purple"></i>
                                 </div>
-                                <span class="text-xs text-neon-purple/70 font-medium uppercase tracking-widest">Academic</span>
+                                <span class="text-[10px] text-neon-purple/90 font-bold uppercase tracking-widest bg-black/30 px-3 py-1 rounded-full backdrop-blur-md">Portfolio</span>
                             </div>
                         </div>
-                        <div class="p-4 bg-dark-800 flex-1 flex flex-col gap-1">
-                            <span class="text-white font-bold group-hover:text-neon-purple transition-colors">College Project Portfolio</span>
-                            <span class="text-xs text-gray-400">Academic showcase platform</span>
-                            <span class="text-xs font-semibold text-neon-purple flex items-center gap-1 mt-auto pt-2"><i data-lucide="external-link" class="w-3 h-3"></i> Visit Live Site</span>
+                        <div class="p-5 flex-1 flex flex-col gap-1 relative">
+                            <span class="text-white font-bold text-lg group-hover:text-neon-purple transition-colors">Personal Portfolio</span>
+                            <span class="text-sm text-gray-400">Mayur Damamgar</span>
+                            <span class="text-xs font-semibold text-neon-purple flex items-center gap-1 mt-4 pt-3 border-t border-white/5"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> Visit Live Site</span>
                         </div>
                     </a>
 
@@ -667,7 +715,7 @@
         </div>
     </div>
 
-    <!-- About & Why Choose Us Section -->
+    <!-- About Section -->
     <section id="about" class="py-24 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -745,11 +793,9 @@
             <p class="text-gray-400 mb-10 text-lg">Contact us directly on WhatsApp to discuss your requirements, request a quote, or place an order instantly.</p>
             
             <div class="bg-dark-900 border border-gray-800 rounded-3xl p-8 md:p-12 shadow-[0_0_50px_rgba(0,0,0,0.5)] relative overflow-hidden group">
-                <!-- Abstract BG for contact -->
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-blue opacity-50"></div>
                 
                 <div class="w-24 h-24 bg-dark-800 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/5 shadow-[0_0_20px_rgba(6,182,212,0.1)] group-hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] transition-all duration-500">
-                    <!-- NEW LOGO -->
                     <img src="neo-removebg-preview.png" alt="Neo Draft Solutions Logo" class="w-14 h-14 object-contain drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]">
                 </div>
                 
@@ -760,7 +806,7 @@
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-lg mx-auto">
-                    <a href="https://wa.me/917483232936" target="_blank" class="neon-button inline-flex items-center justify-center gap-3 w-full sm:w-1/2 px-6 py-4 bg-green-500 hover:bg-green-400 text-dark-900 font-bold rounded-xl text-lg transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)]">
+                    <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%91%8B%20I%20visited%20your%20website%20and%20I%27m%20interested%20in%20your%20smart%20identity%20and%20acrylic%20products.%20Let%27s%20chat!" target="_blank" class="neon-button inline-flex items-center justify-center gap-3 w-full sm:w-1/2 px-6 py-4 bg-green-500 hover:bg-green-400 text-dark-900 font-bold rounded-xl text-lg transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)]">
                         <i data-lucide="message-circle" class="w-6 h-6"></i>
                         Chat Now
                     </a>
@@ -789,68 +835,7 @@
                 <div class="absolute right-0 top-0 h-full w-16 z-10" style="background: linear-gradient(to left, #0a0a0a, transparent);"></div>
 
                 <div class="testimonial-track">
-                    <!-- Cards duplicated for seamless loop -->
-                    <!-- Card 1 -->
-                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
-                        <div class="stars text-lg mb-3">★★★★★</div>
-                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Got my NFC business card made — it's super sleek. Everyone who sees it is impressed. Highly recommend Neo Draft!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-neon-cyan/20 border border-neon-cyan/30 flex items-center justify-center text-neon-cyan font-bold text-sm">RK</div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">Rahul K.</p>
-                                <p class="text-gray-500 text-xs">Business Owner</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
-                        <div class="stars text-lg mb-3">★★★★★</div>
-                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"They built my clinic website in just a few days. Clean design, mobile-friendly, exactly what I needed. Great work!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-neon-blue/20 border border-neon-blue/30 flex items-center justify-center text-neon-blue font-bold text-sm">DS</div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">Dr. Sneha M.</p>
-                                <p class="text-gray-500 text-xs">Dentist, Bengaluru</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
-                        <div class="stars text-lg mb-3">★★★★★</div>
-                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Ordered NFC keychains in bulk for my team. The quality was excellent and delivery was fast. Will order again!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-neon-purple/20 border border-neon-purple/30 flex items-center justify-center text-neon-purple font-bold text-sm">AP</div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">Aditya P.</p>
-                                <p class="text-gray-500 text-xs">Startup Founder</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
-                        <div class="stars text-lg mb-3">★★★★★</div>
-                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"The neon board for my shop looks absolutely stunning at night. So many customers ask where I got it from!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-yellow-500/20 border border-yellow-500/30 flex items-center justify-center text-yellow-400 font-bold text-sm">MR</div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">Mohammed R.</p>
-                                <p class="text-gray-500 text-xs">Café Owner</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card 5 -->
-                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
-                        <div class="stars text-lg mb-3">★★★★★</div>
-                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Super responsive team on WhatsApp. Got my acrylic trophies made for our college event. Beautiful finish!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-green-500/20 border border-green-500/30 flex items-center justify-center text-green-400 font-bold text-sm">PJ</div>
-                            <div>
-                                <p class="text-white font-semibold text-sm">Priya J.</p>
-                                <p class="text-gray-500 text-xs">Event Coordinator</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Duplicate for seamless scroll -->
+                    <!-- Cards -->
                     <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
                         <div class="stars text-lg mb-3">★★★★★</div>
                         <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Got my NFC business card made — it's super sleek. Everyone who sees it is impressed. Highly recommend Neo Draft!"</p>
@@ -903,12 +888,45 @@
                             <div>
                                 <p class="text-white font-semibold text-sm">Priya J.</p>
                                 <p class="text-gray-500 text-xs">Event Coordinator</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Duplicated set for seamless loop -->
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Got my NFC business card made — it's super sleek. Everyone who sees it is impressed. Highly recommend Neo Draft!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-neon-cyan/20 border border-neon-cyan/30 flex items-center justify-center text-neon-cyan font-bold text-sm">RK</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Rahul K.</p>
+                                <p class="text-gray-500 text-xs">Business Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"They built my clinic website in just a few days. Clean design, mobile-friendly, exactly what I needed. Great work!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-neon-blue/20 border border-neon-blue/30 flex items-center justify-center text-neon-blue font-bold text-sm">DS</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Dr. Sneha M.</p>
+                                <p class="text-gray-500 text-xs">Dentist, Bengaluru</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 w-80 bg-dark-800 border border-white/5 rounded-2xl p-6 hover:border-neon-cyan/30 transition-colors">
+                        <div class="stars text-lg mb-3">★★★★★</div>
+                        <p class="text-gray-300 text-sm mb-5 leading-relaxed">"Ordered NFC keychains in bulk for my team. The quality was excellent and delivery was fast. Will order again!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-neon-purple/20 border border-neon-purple/30 flex items-center justify-center text-neon-purple font-bold text-sm">AP</div>
+                            <div>
+                                <p class="text-white font-semibold text-sm">Aditya P.</p>
+                                <p class="text-gray-500 text-xs">Startup Founder</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <p class="text-center text-gray-600 text-xs mt-8">* Reviews are representative of customer feedback. Replace with your real reviews anytime.</p>
         </div>
     </section>
@@ -923,22 +941,22 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
             
             <div class="flex items-center gap-3">
-                <!-- NEW LOGO -->
                 <img src="neo-removebg-preview.png" alt="Neo Draft Solutions Logo" class="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]">
                 <span class="font-display font-bold text-lg text-white">Neo Draft Solutions &copy; 2026</span>
             </div>
 
+            <!-- SVG replaced social icons ensuring visibility -->
             <div class="flex items-center gap-4">
-                <a href="https://www.linkedin.com/company/neodraft-solutions/" target="_blank" class="w-10 h-10 rounded-full bg-dark-800 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-neon-cyan transition-all hover:scale-110 shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]" aria-label="LinkedIn">
-                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                <a href="https://www.linkedin.com/company/neodraft-solutions/" target="_blank" class="w-10 h-10 rounded-full bg-dark-800 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-neon-cyan transition-all hover:scale-110 shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] group" aria-label="LinkedIn">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </a>
-                <a href="https://www.instagram.com/neodraftsolutions/" target="_blank" class="w-10 h-10 rounded-full bg-dark-800 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-neon-cyan transition-all hover:scale-110 shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.4)]" aria-label="Instagram">
-                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                <a href="https://www.instagram.com/neodraftsolutions/" target="_blank" class="w-10 h-10 rounded-full bg-dark-800 border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-neon-cyan transition-all hover:scale-110 shadow-sm hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] group" aria-label="Instagram">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg>
                 </a>
             </div>
 
             <div>
-                <a href="https://wa.me/917483232936" target="_blank" class="inline-flex items-center gap-2 text-gray-400 hover:text-green-400 transition-colors font-medium">
+                <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%91%8B%20I%20visited%20your%20website%20and%20I%27m%20interested%20in%20your%20services.%20Let%27s%20chat!" target="_blank" class="inline-flex items-center gap-2 text-gray-400 hover:text-green-400 transition-colors font-medium">
                     <i data-lucide="message-circle" class="w-5 h-5"></i>
                     Quick Contact
                 </a>
@@ -957,7 +975,44 @@
         // 1. Initialize Icons
         lucide.createIcons();
 
-        // 2. Interactive Network Canvas Background
+        // 2. Splash Screen Animation Logic
+        document.body.style.overflow = 'hidden'; // Lock scroll during splash
+        const splashStart = Date.now();
+
+        window.addEventListener('load', () => {
+            const splashScreen = document.getElementById('splash-screen');
+            const splashLogo = document.getElementById('splash-logo-container');
+            const splashHex = document.querySelector('.splash-hex');
+            const navLogo = document.getElementById('nav-logo');
+            
+            // Calculate remaining time so the animation always takes exactly ~2.4 seconds total, even if the page loads instantly
+            const timeElapsed = Date.now() - splashStart;
+            const delay = Math.max(2400 - timeElapsed, 0); 
+            
+            setTimeout(() => {
+                // Calculate exact math to move from center to the top left nav location
+                const targetRect = navLogo.getBoundingClientRect();
+                const sourceRect = splashLogo.getBoundingClientRect();
+                
+                const moveX = targetRect.left + targetRect.width / 2 - (sourceRect.left + sourceRect.width / 2);
+                const moveY = targetRect.top + targetRect.height / 2 - (sourceRect.top + sourceRect.height / 2);
+                const scale = targetRect.width / sourceRect.width;
+                
+                // Fade out the line, fly to top left, and fade out the dark background
+                splashHex.style.opacity = '0'; 
+                splashLogo.style.transform = `translate3d(${moveX}px, ${moveY}px, 0) scale(${scale})`;
+                splashScreen.classList.add('fade-bg');
+                
+                // Once flight is done, swap to the real nav logo seamlessly
+                setTimeout(() => {
+                    navLogo.style.opacity = '1';
+                    splashScreen.style.display = 'none';
+                    document.body.style.overflow = ''; // Unlock scroll
+                }, 800); 
+            }, delay);
+        });
+
+        // 3. Interactive Network Canvas Background
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, particles;
@@ -966,7 +1021,6 @@
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
             particles = [];
-            // Number of particles depends on screen width for performance
             const particleCount = window.innerWidth < 768 ? 25 : 50; 
             
             for (let i = 0; i < particleCount; i++) {
@@ -984,15 +1038,13 @@
             requestAnimationFrame(animateCanvas);
             ctx.clearRect(0, 0, width, height);
             
-            ctx.fillStyle = 'rgba(6, 182, 212, 0.8)'; // Cyan particles
-            ctx.strokeStyle = 'rgba(6, 182, 212, 0.15)'; // Cyan lines
+            ctx.fillStyle = 'rgba(6, 182, 212, 0.8)';
+            ctx.strokeStyle = 'rgba(6, 182, 212, 0.15)';
             
-            // Move and draw particles
             particles.forEach(p => {
                 p.x += p.vx;
                 p.y += p.vy;
                 
-                // Bounce off edges
                 if (p.x < 0 || p.x > width) p.vx *= -1;
                 if (p.y < 0 || p.y > height) p.vy *= -1;
                 
@@ -1001,7 +1053,6 @@
                 ctx.fill();
             });
 
-            // Draw connecting lines
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
@@ -1012,7 +1063,6 @@
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        // Fade out line as distance increases
                         ctx.lineWidth = 1 - (dist / 150);
                         ctx.stroke();
                     }
@@ -1026,8 +1076,8 @@
 
         // 3. Scroll Reveal Observer
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
+            threshold: 0.05,
+            rootMargin: "0px 0px -20px 0px"
         };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1040,7 +1090,7 @@
 
         // 4. Custom Mouse Tracker Glow (Desktop)
         const mouseGlow = document.getElementById('mouse-glow');
-        if (mouseGlow && window.innerWidth >= 1024) {
+        if (mouseGlow) { // Removed strict width check so it works on resize/preview windows
             document.addEventListener('mousemove', (e) => {
                 mouseGlow.style.left = e.clientX + 'px';
                 mouseGlow.style.top = e.clientY + 'px';
@@ -1064,23 +1114,17 @@
             });
         }
 
-        // 6. Product Image Swapper
-        function swapImg(thumb) {
-            const gallery = thumb.closest('.product-gallery');
-            const mainImg = gallery.querySelector('.main-img');
-            
-            mainImg.style.opacity = '0.5';
-            setTimeout(() => {
-                mainImg.src = thumb.src;
-                mainImg.style.opacity = '1';
-            }, 150);
-            
-            gallery.querySelectorAll('.thumb-img').forEach(t => {
-                t.classList.remove('border-neon-cyan', 'opacity-100', 'scale-110');
-                t.classList.add('border-transparent', 'opacity-50');
-            });
-            thumb.classList.add('border-neon-cyan', 'opacity-100', 'scale-110');
-            thumb.classList.remove('border-transparent', 'opacity-50');
+        // 6. Native Slider Controls for Products
+        function scrollSlider(sliderId, direction) {
+            const slider = document.getElementById(sliderId);
+            if(slider) {
+                // Scroll by image width. Use clientWidth of the slider as it fits 1 image.
+                const scrollAmount = slider.clientWidth;
+                slider.scrollBy({
+                    left: scrollAmount * direction,
+                    behavior: 'smooth'
+                });
+            }
         }
 
         // 7. Portfolio Modal Logic
@@ -1113,7 +1157,7 @@
             if(e.target === this) closePortfolioModal();
         });
 
-        // 9. Back to Top Button
+        // 8. Back to Top Button
         const backToTop = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 400) {
@@ -1122,6 +1166,7 @@
                 backToTop.classList.remove('visible');
             }
         });
+        
         function downloadVCard() {
             const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Neo Draft Solutions\nORG:Neo Draft Solutions\nTEL;TYPE=WORK,VOICE:+917483232936\nEND:VCARD`;
             const blob = new Blob([vcard], { type: 'text/vcard' });
