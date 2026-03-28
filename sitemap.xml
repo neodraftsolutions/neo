@@ -3,40 +3,40 @@
 
   <!-- Main Page -->
   <url>
-    <loc>https://neodraftsolutions.github.io/</loc>
-    <lastmod>2026-03-19</lastmod>
+    <loc>https://neodraftsolutions.github.io/neo/</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Home Section -->
   <url>
-    <loc>https://neodraftsolutions.github.io/#home</loc>
-    <lastmod>2026-03-19</lastmod>
+    <loc>https://neodraftsolutions.github.io/neo/#home</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Products Section -->
   <url>
-    <loc>https://neodraftsolutions.github.io/#products</loc>
-    <lastmod>2026-03-19</lastmod>
+    <loc>https://neodraftsolutions.github.io/neo/#products</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- About Section -->
   <url>
-    <loc>https://neodraftsolutions.github.io/#about</loc>
-    <lastmod>2026-03-19</lastmod>
+    <loc>https://neodraftsolutions.github.io/neo/#about</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Contact Section -->
   <url>
-    <loc>https://neodraftsolutions.github.io/#contact</loc>
-    <lastmod>2026-03-19</lastmod>
+    <loc>https://neodraftsolutions.github.io/neo/#contact</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
