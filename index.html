@@ -405,189 +405,209 @@
             </div>
 
             <!-- Changed to grid-cols-2 on mobile (sm breakpoint) -->
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
-                
-                <!-- Product 1: Professional Websites -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-neon-cyan/30 overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.1)] hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col relative">
-                    <!-- Offer Ribbon -->
-                    <div class="absolute top-2 sm:top-4 right-0 bg-neon-gold text-dark-900 text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-1 rounded-l-md z-20 shadow-lg flex items-center gap-1">
-                        <i data-lucide="gift" class="w-3 h-3"></i> <span class="hidden sm:inline">FREE</span> NFC CARD
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
+            
+            <!-- Product 1: Professional Websites -->
+            <div class="reveal group bg-dark-900 rounded-2xl border border-neon-cyan/30 overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.1)] hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:-translate-y-2 transition-all duration-300 flex flex-col relative">
+                <!-- Offer Ribbon -->
+                <div class="absolute top-2 sm:top-4 right-0 bg-neon-gold text-dark-900 text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-1 rounded-l-md z-20 shadow-lg flex items-center gap-1">
+                    <i data-lucide="gift" class="w-3 h-3"></i> <span class="hidden sm:inline">FREE</span> NFC CARD
+                </div>
+
+                <!-- Cover Image & Click Area -->
+                <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800 cursor-pointer overflow-hidden group/img" onclick="openLightbox('Professional Websites', ['https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80'])">
+                    <div class="w-full h-full flex items-center justify-center p-2 sm:p-4">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Website+Development'" class="max-w-full max-h-full object-contain group-hover/img:scale-105 transition-transform duration-500" alt="Web Dev">
                     </div>
-
-                    <!-- Slider Image Area -->
-                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800">
-                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-1">
-                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Website+Development'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Web Dev 1">
-                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Medical+Websites'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Web Dev 2">
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Business+Websites'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Web Dev 3">
+                    
+                    <!-- Overlay -->
+                    <div class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="bg-dark-800/90 backdrop-blur-sm text-neon-cyan px-3 py-2 sm:px-4 rounded-full font-medium flex items-center gap-1 sm:gap-2 border border-neon-cyan/30 transform translate-y-4 group-hover/img:translate-y-0 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] text-xs sm:text-sm">
+                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">View</span> Gallery (3)
                         </div>
-                        <button onclick="scrollSlider('slider-1', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <button onclick="scrollSlider('slider-1', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden">
-                             <div class="w-8 h-1 rounded-full bg-white/50"></div> <!-- Swipe indicator for mobile -->
-                        </div>
-                    </div>
-
-                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">1️⃣ Professional Websites</h3>
-                        <p class="text-gray-300 text-xs sm:text-sm mb-1 hidden sm:block">Custom websites for businesses, doctors & engineers.</p>
-                        <p class="text-green-400 font-bold text-[10px] sm:text-sm mb-2 sm:mb-4">50% OFF - ₹5,000/- <span class="text-gray-500 font-normal hidden sm:inline">(Negotiable)</span></p>
-                        
-                        <div class="mb-2 sm:mb-5 flex-1 flex flex-col justify-center">
-                            <button onclick="openPortfolioModal()" class="w-full flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg sm:rounded-xl transition-all group/btn">
-                                <span class="text-[10px] sm:text-sm font-semibold text-white group-hover/btn:text-neon-cyan transition-colors">Our Past Websites</span>
-                                <i data-lucide="arrow-right" class="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 group-hover/btn:text-neon-cyan transform group-hover/btn:translate-x-1 transition-all"></i>
-                            </button>
-                        </div>
-
-                        <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%9A%80%20I%27m%20interested%20in%20getting%20a%20Professional%20Website%20along%20with%20the%20FREE%20NFC%20Card%20offer.%20Can%20you%20share%20more%20details%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-neon-cyan text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-bold transition-colors hover:bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
-                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">Claim Offer on</span> WhatsApp
-                        </a>
                     </div>
                 </div>
 
-                <!-- Product 2: NFC Keychains -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 100ms;">
-                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800">
-                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-2">
-                            <img src="6_f317effb-8c9e-4b53-9be3-6d66d81e163c.jpeg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Keychain'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Keychain 1">
-                            <img src="09f71d1a43691f4bf67d2b84bcb2b3d2.jpeg" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Keychain'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Keychain 2">
-                            <img src="1435aec03c8aaecdc222f6f2e2b86924.jpeg" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Keychain'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Keychain 3">
-                            <img src="He8e54d381d1b4f038f2cf27c07e40a9cQ.jpeg" onerror="this.src='https://placehold.co/800x600/121212/ec4899?text=Keychain'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Keychain 4">
-                            <img src="Instantly-Contactless-Sharing-Social-Media-Lost-Found-Phone-NFC-Keychain.webp" onerror="this.src='https://placehold.co/800x600/121212/eab308?text=Keychain'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Keychain 5">
-                        </div>
-                        <button onclick="scrollSlider('slider-2', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <button onclick="scrollSlider('slider-2', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden"><div class="w-8 h-1 rounded-full bg-white/50"></div></div>
+                <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                    <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">1️⃣ Professional Websites</h3>
+                    <p class="text-gray-300 text-xs sm:text-sm mb-1 hidden sm:block">Custom websites for businesses, doctors & engineers.</p>
+                    <p class="text-green-400 font-bold text-[10px] sm:text-sm mb-2 sm:mb-4">50% OFF - ₹5,000/- <span class="text-gray-500 font-normal hidden sm:inline">(Negotiable)</span></p>
+                    
+                    <div class="mb-2 sm:mb-5 flex-1 flex flex-col justify-center">
+                        <button onclick="openPortfolioModal()" class="w-full flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg sm:rounded-xl transition-all group/btn">
+                            <span class="text-[10px] sm:text-sm font-semibold text-white group-hover/btn:text-neon-cyan transition-colors">Our Past Websites</span>
+                            <i data-lucide="arrow-right" class="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 group-hover/btn:text-neon-cyan transform group-hover/btn:translate-x-1 transition-all"></i>
+                        </button>
                     </div>
 
-                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">2️⃣ NFC Keychains</h3>
-                        <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Tap-enabled keychains for quick digital sharing. No apps required.</p>
-                        <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4 space-y-1">
-                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹150/unit <span class="text-gray-400 font-normal hidden sm:inline">(25 units min)</span></p>
-                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm hidden sm:block">₹120/unit <span class="text-gray-400 font-normal">(50 units min)</span></p>
-                        </div>
-                        <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%91%8B%20I%27m%20looking%20to%20order%20custom%20NFC%20Keychains.%20Could%20we%20discuss%20the%20designs%20and%20pricing%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
-                        </a>
-                    </div>
+                    <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%9A%80%20I%27m%20interested%20in%20getting%20a%20Professional%20Website%20along%20with%20the%20FREE%20NFC%20Card%20offer.%20Can%20you%20share%20more%20details%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-neon-cyan text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-bold transition-colors hover:bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">Claim Offer on</span> WhatsApp
+                    </a>
                 </div>
-
-                <!-- Product 3: Business Cards -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 200ms;">
-                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800">
-                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-3">
-                            <img src="file_00000000a18871fab8040eafc15db01b.png" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Business+Card'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Card 1">
-                            <img src="4b8bd393dc1285ff77379d9bf111d9a4.jpeg" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Business+Card'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Card 2">
-                            <img src="8b978bd4209bf45e3376995670bd0301.jpeg" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Business+Card'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Card 3">
-                            <img src="6fb7d728e5be79e33a2a6e1b43048256.jpeg" onerror="this.src='https://placehold.co/800x600/121212/ec4899?text=Business+Card'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Card 4">
-                            <img src="ff4c0d32ca8615bd9f64a976898cf6f7.jpeg" onerror="this.src='https://placehold.co/800x600/121212/eab308?text=Business+Card'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Card 5">
-                        </div>
-                        <button onclick="scrollSlider('slider-3', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <button onclick="scrollSlider('slider-3', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden"><div class="w-8 h-1 rounded-full bg-white/50"></div></div>
-                    </div>
-
-                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">3️⃣ NFC Business Cards</h3>
-                        <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Smart digital business cards connected to your website/portfolio.</p>
-                        <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4 space-y-1">
-                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹350/card <span class="text-gray-400 font-normal hidden sm:inline">(custom design)</span></p>
-                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm hidden sm:block">+ Website charges <span class="text-gray-400 font-normal">(if built by us)</span></p>
-                        </div>
-                        <a href="https://wa.me/917483232936?text=Hello!%20%F0%9F%8C%9F%20I%27d%20like%20to%20upgrade%20to%20smart%20NFC%20Business%20Cards.%20Can%20you%20share%20some%20design%20samples%20and%20pricing%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Product 4: Neon Boards -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col">
-                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800">
-                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-4">
-                            <img src="f37e60c4326e292c58d7b5b7213ec464.jpeg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Neon+Board'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Neon 1">
-                            <img src="2b048236546eef6a8cba4f05978b2e32.jpeg" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Neon+Board'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Neon 2">
-                            <img src="Screenshot_20260304-220814_Gallery.jpeg" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Neon+Board'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Neon 3">
-                            <img src="5498d19ff61bdf289d3c5d435511ddce.jpeg" onerror="this.src='https://placehold.co/800x600/121212/ec4899?text=Neon+Board'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Neon 4">
-                            <img src="086071215e25c2f82a3bb1ca5cf1dc68.jpeg" onerror="this.src='https://placehold.co/800x600/121212/eab308?text=Neon+Board'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Neon 5">
-                        </div>
-                        <button onclick="scrollSlider('slider-4', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <button onclick="scrollSlider('slider-4', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden"><div class="w-8 h-1 rounded-full bg-white/50"></div></div>
-                    </div>
-
-                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">4️⃣ Neon Name Boards</h3>
-                        <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Custom LED neon signs for homes, businesses, and décor.</p>
-                        <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
-                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹2,000 <span class="text-gray-400 font-normal hidden sm:inline">(2×1.5 ft board + adapter)</span></p>
-                        </div>
-                        <a href="https://wa.me/917483232936?text=Hi%20there!%20%E2%9C%A8%20I%27m%20interested%20in%20getting%20a%20custom%20Neon%20Name%20Board.%20Can%20I%20share%20my%20design%20idea%20for%20a%20quote%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Product 5: Laser Cutting -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 100ms;">
-                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800">
-                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-5">
-                            <img src="laser3.jpg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Laser+Cut'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Laser 1">
-                            <img src="Acrylic_laser_cutting.png" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Laser+Cut'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Laser 2">
-                            <img src="Figure-1-Laser-cutting-acrylic-sheet-1024x576.jpeg" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Laser+Cut'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Laser 3">
-                            <img src="can-you-laser-cut-polyethylene-(3).jpg" onerror="this.src='https://placehold.co/800x600/121212/ec4899?text=Laser+Cut'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Laser 4">
-                            <img src="AoM-snijden-platen.jpg" onerror="this.src='https://placehold.co/800x600/121212/eab308?text=Laser+Cut'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Laser 5">
-                        </div>
-                        <button onclick="scrollSlider('slider-5', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <button onclick="scrollSlider('slider-5', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden"><div class="w-8 h-1 rounded-full bg-white/50"></div></div>
-                    </div>
-
-                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">5️⃣ Acrylic Laser Cutting</h3>
-                        <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Precision laser cutting for acrylic boards, signage, and designs.</p>
-                        <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
-                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹15/minute <span class="text-gray-400 font-normal hidden sm:inline">(machine time)</span></p>
-                        </div>
-                        <a href="https://wa.me/917483232936?text=Hello!%20%F0%9F%9B%A0%EF%B8%8F%20I%20have%20a%20requirement%20for%20Acrylic%20Laser%20Cutting%20services.%20Can%20we%20discuss%20dimensions%20and%20pricing%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Product 6: Custom Acrylic -->
-                <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 200ms;">
-                    <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800">
-                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full scroll-smooth items-center" id="slider-6">
-                            <img src="d917ca71c27a199204b4f75597f3abb6.jpg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Acrylic'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Acrylic 1">
-                            <img src="acrylic-laser-cutting.jpeg" onerror="this.src='https://placehold.co/800x600/121212/3b82f6?text=Acrylic'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Acrylic 2">
-                            <img src="cd9c0cb618.webp" onerror="this.src='https://placehold.co/800x600/121212/8b5cf6?text=Acrylic'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Acrylic 3">
-                            <img src="63c231c4a63ef15943b4a296f7f42154.jpg" onerror="this.src='https://placehold.co/800x600/121212/ec4899?text=Acrylic'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Acrylic 4">
-                            <img src="bd40549ad3264ba73fa100e5d2cf1975.jpeg" onerror="this.src='https://placehold.co/800x600/121212/eab308?text=Acrylic'" class="w-full h-full flex-shrink-0 snap-center object-cover" alt="Acrylic 5">
-                        </div>
-                        <button onclick="scrollSlider('slider-6', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <button onclick="scrollSlider('slider-6', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-6 sm:w-8 h-6 sm:h-8 flex items-center justify-center bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity z-10 hidden sm:flex"><i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5"></i></button>
-                        <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none sm:hidden"><div class="w-8 h-1 rounded-full bg-white/50"></div></div>
-                    </div>
-
-                    <div class="p-3 sm:p-6 flex-1 flex flex-col">
-                        <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">6️⃣ Custom Acrylic</h3>
-                        <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Personalized acrylic designs, awards, and displays for branding.</p>
-                        <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
-                            <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">Custom Quote <span class="text-gray-400 font-normal hidden sm:inline">(based on design)</span></p>
-                        </div>
-                        <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%8F%86%20I%27m%20interested%20in%20getting%20some%20Custom%20Acrylic%20Products%20made.%20Can%20I%20share%20my%20requirements%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
-                        </a>
-                    </div>
-                </div>
-
             </div>
-        </div>
-    </section>
 
-    <!-- Professional Portfolio Modal -->
+            <!-- Product 2: NFC Keychains -->
+            <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 100ms;">
+                <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800 cursor-pointer overflow-hidden group/img" onclick="openLightbox('NFC Keychains', ['6_f317effb-8c9e-4b53-9be3-6d66d81e163c.jpeg', '09f71d1a43691f4bf67d2b84bcb2b3d2.jpeg', '1435aec03c8aaecdc222f6f2e2b86924.jpeg', 'He8e54d381d1b4f038f2cf27c07e40a9cQ.jpeg', 'Instantly-Contactless-Sharing-Social-Media-Lost-Found-Phone-NFC-Keychain.webp'])">
+                    <div class="w-full h-full flex items-center justify-center p-2 sm:p-4">
+                        <img src="6_f317effb-8c9e-4b53-9be3-6d66d81e163c.jpeg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Keychain'" class="max-w-full max-h-full object-contain group-hover/img:scale-105 transition-transform duration-500" alt="Keychain">
+                    </div>
+                    
+                    <div class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="bg-dark-800/90 backdrop-blur-sm text-neon-cyan px-3 py-2 sm:px-4 rounded-full font-medium flex items-center gap-1 sm:gap-2 border border-neon-cyan/30 transform translate-y-4 group-hover/img:translate-y-0 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] text-xs sm:text-sm">
+                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">View</span> Gallery (5)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                    <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">2️⃣ NFC Keychains</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Tap-enabled keychains for quick digital sharing. No apps required.</p>
+                    <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4 space-y-1">
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹150/unit <span class="text-gray-400 font-normal hidden sm:inline">(25 units min)</span></p>
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm hidden sm:block">₹120/unit <span class="text-gray-400 font-normal">(50 units min)</span></p>
+                    </div>
+                    <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%91%8B%20I%27m%20looking%20to%20order%20custom%20NFC%20Keychains.%20Could%20we%20discuss%20the%20designs%20and%20pricing%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
+                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product 3: Business Cards -->
+            <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 200ms;">
+                <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800 cursor-pointer overflow-hidden group/img" onclick="openLightbox('NFC Business Cards', ['file_00000000a18871fab8040eafc15db01b.png', '4b8bd393dc1285ff77379d9bf111d9a4.jpeg', '8b978bd4209bf45e3376995670bd0301.jpeg', '6fb7d728e5be79e33a2a6e1b43048256.jpeg', 'ff4c0d32ca8615bd9f64a976898cf6f7.jpeg'])">
+                    <div class="w-full h-full flex items-center justify-center p-2 sm:p-4">
+                        <img src="file_00000000a18871fab8040eafc15db01b.png" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Business+Card'" class="max-w-full max-h-full object-contain group-hover/img:scale-105 transition-transform duration-500" alt="Card">
+                    </div>
+                    
+                    <div class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="bg-dark-800/90 backdrop-blur-sm text-neon-cyan px-3 py-2 sm:px-4 rounded-full font-medium flex items-center gap-1 sm:gap-2 border border-neon-cyan/30 transform translate-y-4 group-hover/img:translate-y-0 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] text-xs sm:text-sm">
+                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">View</span> Gallery (5)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                    <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">3️⃣ NFC Business Cards</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Smart digital business cards connected to your website/portfolio.</p>
+                    <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4 space-y-1">
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹350/card <span class="text-gray-400 font-normal hidden sm:inline">(custom design)</span></p>
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm hidden sm:block">+ Website charges <span class="text-gray-400 font-normal">(if built by us)</span></p>
+                    </div>
+                    <a href="https://wa.me/917483232936?text=Hello!%20%F0%9F%8C%9F%20I%27d%20like%20to%20upgrade%20to%20smart%20NFC%20Business%20Cards.%20Can%20you%20share%20some%20design%20samples%20and%20pricing%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
+                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product 4: Neon Boards -->
+            <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col">
+                <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800 cursor-pointer overflow-hidden group/img" onclick="openLightbox('Neon Name Boards', ['f37e60c4326e292c58d7b5b7213ec464.jpeg', '2b048236546eef6a8cba4f05978b2e32.jpeg', 'Screenshot_20260304-220814_Gallery.jpeg', '5498d19ff61bdf289d3c5d435511ddce.jpeg', '086071215e25c2f82a3bb1ca5cf1dc68.jpeg'])">
+                    <div class="w-full h-full flex items-center justify-center p-2 sm:p-4">
+                        <img src="f37e60c4326e292c58d7b5b7213ec464.jpeg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Neon+Board'" class="max-w-full max-h-full object-contain group-hover/img:scale-105 transition-transform duration-500" alt="Neon">
+                    </div>
+                    
+                    <div class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="bg-dark-800/90 backdrop-blur-sm text-neon-cyan px-3 py-2 sm:px-4 rounded-full font-medium flex items-center gap-1 sm:gap-2 border border-neon-cyan/30 transform translate-y-4 group-hover/img:translate-y-0 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] text-xs sm:text-sm">
+                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">View</span> Gallery (5)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                    <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">4️⃣ Neon Name Boards</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Custom LED neon signs for homes, businesses, and décor.</p>
+                    <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹2,000 <span class="text-gray-400 font-normal hidden sm:inline">(2×1.5 ft board + adapter)</span></p>
+                    </div>
+                    <a href="https://wa.me/917483232936?text=Hi%20there!%20%E2%9C%A8%20I%27m%20interested%20in%20getting%20a%20custom%20Neon%20Name%20Board.%20Can%20I%20share%20my%20design%20idea%20for%20a%20quote%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
+                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product 5: Laser Cutting -->
+            <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 100ms;">
+                <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800 cursor-pointer overflow-hidden group/img" onclick="openLightbox('Acrylic Laser Cutting', ['laser3.jpg', 'Acrylic_laser_cutting.png', 'Figure-1-Laser-cutting-acrylic-sheet-1024x576.jpeg', 'can-you-laser-cut-polyethylene-(3).jpg', 'AoM-snijden-platen.jpg'])">
+                    <div class="w-full h-full flex items-center justify-center p-2 sm:p-4">
+                        <img src="laser3.jpg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Laser+Cut'" class="max-w-full max-h-full object-contain group-hover/img:scale-105 transition-transform duration-500" alt="Laser">
+                    </div>
+                    
+                    <div class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="bg-dark-800/90 backdrop-blur-sm text-neon-cyan px-3 py-2 sm:px-4 rounded-full font-medium flex items-center gap-1 sm:gap-2 border border-neon-cyan/30 transform translate-y-4 group-hover/img:translate-y-0 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] text-xs sm:text-sm">
+                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">View</span> Gallery (5)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                    <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">5️⃣ Acrylic Laser Cutting</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Precision laser cutting for acrylic boards, signage, and designs.</p>
+                    <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹15/minute <span class="text-gray-400 font-normal hidden sm:inline">(machine time)</span></p>
+                    </div>
+                    <a href="https://wa.me/917483232936?text=Hello!%20%F0%9F%9B%A0%EF%B8%8F%20I%20have%20a%20requirement%20for%20Acrylic%20Laser%20Cutting%20services.%20Can%20we%20discuss%20dimensions%20and%20pricing%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
+                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Product 6: Custom Acrylic -->
+            <div class="reveal group bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-neon-cyan/50 hover:-translate-y-2 transition-all duration-300 flex flex-col" style="transition-delay: 200ms;">
+                <div class="relative w-full aspect-square sm:aspect-[4/3] bg-dark-800 border-b border-gray-800 cursor-pointer overflow-hidden group/img" onclick="openLightbox('Custom Acrylic', ['d917ca71c27a199204b4f75597f3abb6.jpg', 'acrylic-laser-cutting.jpeg', 'cd9c0cb618.webp', '63c231c4a63ef15943b4a296f7f42154.jpg', 'bd40549ad3264ba73fa100e5d2cf1975.jpeg'])">
+                    <div class="w-full h-full flex items-center justify-center p-2 sm:p-4">
+                        <img src="d917ca71c27a199204b4f75597f3abb6.jpg" onerror="this.src='https://placehold.co/800x600/121212/06b6d4?text=Acrylic'" class="max-w-full max-h-full object-contain group-hover/img:scale-105 transition-transform duration-500" alt="Acrylic">
+                    </div>
+                    
+                    <div class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="bg-dark-800/90 backdrop-blur-sm text-neon-cyan px-3 py-2 sm:px-4 rounded-full font-medium flex items-center gap-1 sm:gap-2 border border-neon-cyan/30 transform translate-y-4 group-hover/img:translate-y-0 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] text-xs sm:text-sm">
+                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">View</span> Gallery (5)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 sm:p-6 flex-1 flex flex-col">
+                    <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">6️⃣ Custom Acrylic</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Personalized acrylic designs, awards, and displays for branding.</p>
+                    <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">Custom Quote <span class="text-gray-400 font-normal hidden sm:inline">(based on design)</span></p>
+                    </div>
+                    <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%8F%86%20I%27m%20interested%20in%20getting%20some%20Custom%20Acrylic%20Products%20made.%20Can%20I%20share%20my%20requirements%3F" target="_blank" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
+                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Full-Screen Product Lightbox Gallery -->
+<div id="product-lightbox" class="fixed inset-0 z-[110] hidden flex items-center justify-center bg-black/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
+    <button onclick="closeLightbox()" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all hover:rotate-90">
+        <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+    </button>
+    
+    <div class="absolute top-6 left-6 z-50 pointer-events-none">
+        <h3 id="lightbox-title" class="text-white font-display text-lg sm:text-2xl font-bold drop-shadow-md">Product</h3>
+        <p id="lightbox-counter" class="text-neon-cyan text-xs sm:text-sm font-medium drop-shadow-md mt-1">1 / 1</p>
+    </div>
+
+    <div class="relative w-full h-full max-w-7xl mx-auto flex items-center justify-center pt-20 pb-10 px-0 sm:px-16">
+        <div id="lightbox-track" class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full items-center scroll-smooth">
+            <!-- Images will be injected here via JavaScript -->
+        </div>
+        
+        <button onclick="scrollLightbox(-1)" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/50 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-full backdrop-blur-md transition-all z-10 border border-white/10 hover:border-transparent shadow-lg">
+            <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+        </button>
+        <button onclick="scrollLightbox(1)" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/50 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-full backdrop-blur-md transition-all z-10 border border-white/10 hover:border-transparent shadow-lg">
+            <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Professional Portfolio Modal -->
     <div id="portfolio-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/85 backdrop-blur-lg p-4 opacity-0 transition-opacity duration-300">
         <div class="bg-dark-900 border border-white/10 rounded-3xl max-w-4xl w-full p-6 sm:p-8 shadow-[0_0_50px_rgba(6,182,212,0.15)] transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]" id="portfolio-modal-content">
             
@@ -927,6 +947,7 @@
                     </div>
                 </div>
             </div>
+            <p class="text-center text-gray-600 text-xs mt-8">* Reviews are representative of customer feedback. Replace with your real reviews anytime.</p>
         </div>
     </section>
 
@@ -1113,18 +1134,79 @@
             });
         }
 
-        // 6. Native Slider Controls for Products
-        function scrollSlider(sliderId, direction) {
-            const slider = document.getElementById(sliderId);
-            if(slider) {
-                // Scroll by image width. Use clientWidth of the slider as it fits 1 image.
-                const scrollAmount = slider.clientWidth;
-                slider.scrollBy({
-                    left: scrollAmount * direction,
-                    behavior: 'smooth'
-                });
+        // 6. Lightbox Logic for Products
+        let currentLightboxImages = [];
+
+        function openLightbox(title, images) {
+            const modal = document.getElementById('product-lightbox');
+            const track = document.getElementById('lightbox-track');
+            const titleEl = document.getElementById('lightbox-title');
+            
+            currentLightboxImages = images;
+            titleEl.textContent = title;
+            
+            // Generate uncropped slides
+            track.innerHTML = '';
+            images.forEach((imgSrc, index) => {
+                track.innerHTML += `
+                    <div class="w-full h-full flex-shrink-0 snap-center flex items-center justify-center p-2 sm:p-8" id="lb-slide-${index}">
+                        <img src="${imgSrc}" class="max-w-full max-h-full object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.8)] rounded-xl" alt="${title} image ${index + 1}">
+                    </div>
+                `;
+            });
+
+            // Prevent body scroll and show modal
+            document.body.style.overflow = 'hidden';
+            modal.classList.remove('hidden');
+            void modal.offsetWidth; // Reflow
+            modal.classList.remove('opacity-0');
+            
+            // Init tracking
+            setTimeout(() => {
+                updateLightboxCounter();
+                track.addEventListener('scroll', updateLightboxCounter);
+            }, 50);
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('product-lightbox');
+            const track = document.getElementById('lightbox-track');
+            
+            document.body.style.overflow = '';
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                track.innerHTML = ''; 
+                track.removeEventListener('scroll', updateLightboxCounter);
+            }, 300);
+        }
+
+        function scrollLightbox(direction) {
+            const track = document.getElementById('lightbox-track');
+            if(track) {
+                const scrollAmount = track.clientWidth;
+                track.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
             }
         }
+
+        function updateLightboxCounter() {
+            const track = document.getElementById('lightbox-track');
+            const counter = document.getElementById('lightbox-counter');
+            if(!track || currentLightboxImages.length === 0) return;
+            
+            const index = Math.max(0, Math.min(Math.round(track.scrollLeft / track.clientWidth), currentLightboxImages.length - 1));
+            counter.textContent = `${index + 1} / ${currentLightboxImages.length}`;
+        }
+        
+        // Close lightbox when clicking background
+        document.addEventListener('DOMContentLoaded', () => {
+            const lb = document.getElementById('product-lightbox');
+            if(lb) {
+                lb.addEventListener('click', function(e) {
+                    if(e.target === this || e.target.id === 'lightbox-track') closeLightbox();
+                });
+            }
+        });
 
         // 7. Portfolio Modal Logic
         function openPortfolioModal() {
