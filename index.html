@@ -204,15 +204,59 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* NFC Demo Animation */
-        .phone-mockup { width: 120px; height: 240px; border-radius: 20px; border: 4px solid #333; background: #000; position: relative; overflow: hidden; margin: 0 auto; z-index: 2; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 12px; background: #333; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; z-index: 5;}
-        .card-mockup { width: 80px; height: 50px; background: linear-gradient(135deg, #06b6d4, #8b5cf6); border-radius: 6px; position: absolute; right: 20px; top: 120px; z-index: 10; transform: rotate(-15deg); opacity: 0; animation: tapAnimation 5s infinite; box-shadow: 0 5px 15px rgba(6,182,212,0.4); display: flex; align-items: center; justify-content: center; }
-        .keychain-mockup { width: 45px; height: 45px; background: linear-gradient(135deg, #06b6d4, #10b981); border-radius: 50%; position: absolute; right: 40px; top: 120px; z-index: 10; opacity: 0; animation: tapAnimationKeychain 5s infinite; box-shadow: 0 5px 15px rgba(6,182,212,0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .keychain-ring { width: 18px; height: 18px; border: 3px solid #ccc; border-radius: 50%; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); }
-        .ripple { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(6,182,212,0.4); border-radius: 50%; z-index: 6; opacity: 0; animation: rippleAnimation 5s infinite; pointer-events: none; }
-        .phone-screen { position: absolute; inset: 2px; background: #121212; border-radius: 14px; opacity: 0; animation: screenOn 5s infinite; display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 10px;}
-        .phone-screen-social { position: absolute; inset: 2px; background: #121212; border-radius: 14px; opacity: 0; animation: screenOn 5s infinite; display:flex; flex-direction:column; padding: 10px; }
+        /* NFC Demo Flat/Top-Down Animation Upgrades */
+        .scene-flat {
+            position: relative;
+        }
+        
+        .phone-mockup { 
+            width: 120px; height: 240px; border-radius: 20px; border: 3px solid #444; 
+            background: #000; position: relative; overflow: hidden; margin: 0 auto; z-index: 2; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8), inset 0 0 10px rgba(255,255,255,0.05);
+        }
+        
+        /* Phone Screen Glare - Subtle flat reflection */
+        .phone-mockup::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(135deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 60%);
+            pointer-events: none; z-index: 10;
+        }
+
+        .phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 12px; background: #222; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; z-index: 5;}
+        
+        .card-mockup { 
+            width: 80px; height: 50px; border-radius: 6px; position: absolute; 
+            top: 50%; left: 50%; margin-top: -25px; margin-left: -40px; z-index: 10; 
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6, #06b6d4); background-size: 200% 200%;
+            display: flex; align-items: center; justify-content: center; 
+            opacity: 0; 
+            animation: flatTapCard 5s infinite cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        
+        .keychain-mockup { 
+            width: 45px; height: 45px; border-radius: 50%; position: absolute; 
+            top: 50%; left: 50%; margin-top: -22.5px; margin-left: -22.5px; z-index: 10; 
+            background: linear-gradient(135deg, #06b6d4, #10b981, #06b6d4); background-size: 200% 200%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            opacity: 0; 
+            animation: flatTapKeychain 5s infinite cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+        
+        .keychain-ring { 
+            width: 18px; height: 18px; border: 3px solid #ccc; border-radius: 50%; position: absolute; top: -20px; left: 50%; 
+            transform: translateX(-50%); 
+        }
+        
+        .ripple { 
+            position: absolute; top: 50%; left: 50%; width: 60px; height: 60px; 
+            background: transparent; border-radius: 50%; z-index: 6; opacity: 0; 
+            pointer-events: none;
+            animation: flatRipple 5s infinite; 
+        }
+
+        .phone-screen { position: absolute; inset: 2px; background: #121212; border-radius: 14px; opacity: 0; animation: screenOnFlat 5s infinite; display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 10px;}
+        .phone-screen-social { position: absolute; inset: 2px; background: #121212; border-radius: 14px; opacity: 0; animation: screenOnFlat 5s infinite; display:flex; flex-direction:column; padding: 10px; }
+        
         .mock-nav { width: 100%; height: 15px; border-bottom: 1px solid #333; margin-bottom: auto; display: flex; align-items: center; justify-content: space-between; padding: 0 5px;}
         .mock-dot { width: 4px; height: 4px; background: #444; border-radius: 50%; }
         .profile-pic { width:45px; height:45px; background:linear-gradient(135deg, #06b6d4, #ec4899); border-radius:50%; margin-bottom:10px; border: 2px solid #222; }
@@ -224,31 +268,38 @@
         .social-grid-item { width: 100%; aspect-ratio: 1; background: #222; border-radius: 4px; }
         .social-btn { width: 100%; height: 20px; background: #06b6d4; border-radius: 10px; margin-top: 10px; }
 
-        @keyframes tapAnimation {
-            0% { transform: translate(30px, 30px) rotate(-15deg) scale(1.2); opacity: 0; }
-            15% { transform: translate(30px, 30px) rotate(-15deg) scale(1.2); opacity: 1; }
-            30% { transform: translate(-70px, -10px) rotate(-5deg) scale(1); opacity: 1; }
-            45% { transform: translate(-70px, -10px) rotate(-5deg) scale(1); opacity: 1; }
-            60% { transform: translate(30px, 30px) rotate(-15deg) scale(1.2); opacity: 0; }
-            100% { transform: translate(30px, 30px) rotate(-15deg) scale(1.2); opacity: 0; }
+        @keyframes flatTapCard {
+            0% { transform: translate(70px, 90px) scale(1.6) rotate(-15deg); opacity: 0; filter: drop-shadow(20px 30px 15px rgba(0,0,0,0.5)); }
+            15% { transform: translate(35px, 45px) scale(1.3) rotate(-5deg); opacity: 1; filter: drop-shadow(15px 20px 10px rgba(0,0,0,0.6)); }
+            30% { transform: translate(0px, 0px) scale(1) rotate(0deg); opacity: 1; filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.8)); }
+            32% { transform: translate(0px, 0px) scale(0.95) rotate(0deg); opacity: 1; filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.9)); } /* Impact push */
+            35% { transform: translate(0px, 0px) scale(1) rotate(0deg); opacity: 1; filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.8)); }
+            45% { transform: translate(0px, 0px) scale(1) rotate(0deg); opacity: 1; filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.8)); }
+            55% { transform: translate(70px, 90px) scale(1.6) rotate(-15deg); opacity: 0; filter: drop-shadow(20px 30px 15px rgba(0,0,0,0.5)); }
+            100% { transform: translate(70px, 90px) scale(1.6) rotate(-15deg); opacity: 0; }
         }
-        @keyframes tapAnimationKeychain {
-            0% { transform: translate(30px, 30px) rotate(15deg) scale(1.2); opacity: 0; }
-            15% { transform: translate(30px, 30px) rotate(15deg) scale(1.2); opacity: 1; }
-            30% { transform: translate(-80px, -10px) rotate(0deg) scale(1); opacity: 1; }
-            45% { transform: translate(-80px, -10px) rotate(0deg) scale(1); opacity: 1; }
-            60% { transform: translate(30px, 30px) rotate(15deg) scale(1.2); opacity: 0; }
-            100% { transform: translate(30px, 30px) rotate(15deg) scale(1.2); opacity: 0; }
+        
+        @keyframes flatTapKeychain {
+            0% { transform: translate(70px, 90px) scale(1.6) rotate(15deg); opacity: 0; filter: drop-shadow(20px 30px 15px rgba(0,0,0,0.5)); }
+            15% { transform: translate(35px, 45px) scale(1.3) rotate(5deg); opacity: 1; filter: drop-shadow(15px 20px 10px rgba(0,0,0,0.6)); }
+            30% { transform: translate(0px, -20px) scale(1) rotate(0deg); opacity: 1; filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.8)); } /* Tapped slightly higher */
+            32% { transform: translate(0px, -20px) scale(0.95) rotate(0deg); opacity: 1; filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.9)); }
+            35% { transform: translate(0px, -20px) scale(1) rotate(0deg); opacity: 1; filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.8)); }
+            45% { transform: translate(0px, -20px) scale(1) rotate(0deg); opacity: 1; filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.8)); }
+            55% { transform: translate(70px, 90px) scale(1.6) rotate(15deg); opacity: 0; filter: drop-shadow(20px 30px 15px rgba(0,0,0,0.5)); }
+            100% { transform: translate(70px, 90px) scale(1.6) rotate(15deg); opacity: 0; }
         }
-        @keyframes rippleAnimation {
-            0%, 28% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
-            30% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            45% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
-            100% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+        
+        @keyframes flatRipple {
+            0%, 28% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+            31% { transform: translate(-50%, -50%) scale(1); opacity: 1; box-shadow: 0 0 0 4px rgba(6,182,212,0.6); background: rgba(6,182,212,0.3); }
+            45% { transform: translate(-50%, -50%) scale(3); opacity: 0; box-shadow: 0 0 0 0px rgba(6,182,212,0); }
+            100% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
         }
-        @keyframes screenOn {
-            0%, 35% { opacity: 0; }
-            40%, 85% { opacity: 1; }
+
+        @keyframes screenOnFlat {
+            0%, 30% { opacity: 0; }
+            32%, 85% { opacity: 1; }
             90%, 100% { opacity: 0; }
         }
 
@@ -456,8 +507,8 @@
 
                 <div class="p-3 sm:p-6 flex-1 flex flex-col">
                     <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">Professional Websites</h3>
-                    <p class="text-gray-300 text-xs sm:text-sm mb-1 hidden sm:block">Custom websites for businesses, doctors & engineers.</p>
-                    <p class="text-green-400 font-bold text-[10px] sm:text-sm mb-2 sm:mb-4">Starting price is ₹5,000/- <span class="text-gray-500 font-normal hidden sm:inline">(50% OFF Applied)</span></p>
+                    <p class="text-gray-300 text-xs sm:text-sm mb-1">Custom websites for businesses, doctors & engineers.</p>
+                    <p class="text-green-400 font-bold text-[10px] sm:text-sm mb-2 sm:mb-4">Starting price is ₹5,000/- <span class="text-gray-500 font-normal">(50% OFF Applied)</span></p>
                     
                     <div class="mb-2 sm:mb-5 flex-1 flex flex-col justify-center">
                         <button onclick="openPortfolioModal()" class="w-full flex items-center justify-between px-2 sm:px-4 py-2 sm:py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg sm:rounded-xl transition-all group/btn">
@@ -467,7 +518,7 @@
                     </div>
 
                     <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%9A%80%20I%27m%20interested%20in%20getting%20a%20Professional%20Website%20along%20with%20the%20FREE%20NFC%20Card%20offer.%20Can%20you%20share%20more%20details%3F" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-neon-cyan text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-bold transition-colors hover:bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
-                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">Claim Offer on</span> WhatsApp
+                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Claim Offer on WhatsApp
                     </a>
                 </div>
             </div>
@@ -480,7 +531,7 @@
                     </div>
                     <div class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div class="bg-dark-800/90 backdrop-blur-sm text-neon-cyan px-3 py-2 sm:px-4 rounded-full font-medium flex items-center gap-1 sm:gap-2 border border-neon-cyan/30 transform translate-y-4 group-hover/img:translate-y-0 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] text-xs sm:text-sm">
-                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">View</span> Gallery (5)
+                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> View Gallery (5)
                         </div>
                     </div>
                 </div>
@@ -488,9 +539,9 @@
                     <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">NFC Keychains</h3>
                     <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Tap-enabled keychains for quick digital sharing. No apps required.</p>
                     <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4 space-y-1">
-                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹180/unit <span class="text-gray-400 font-normal hidden sm:inline">(25+ units)</span></p>
-                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm hidden sm:block">₹150/unit <span class="text-gray-400 font-normal">(50+ units)</span></p>
-                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm hidden sm:block">₹120/unit <span class="text-gray-400 font-normal">(100+ units)</span></p>
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹180/unit <span class="text-gray-400 font-normal">(25+ units)</span></p>
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹150/unit <span class="text-gray-400 font-normal">(50+ units)</span></p>
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹120/unit <span class="text-gray-400 font-normal">(100+ units)</span></p>
                     </div>
                     
                     <div class="flex flex-col gap-2 mt-auto">
@@ -498,7 +549,7 @@
                             <i data-lucide="play-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Tap Demo
                         </button>
                         <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%91%8B%20I%27m%20looking%20to%20order%20custom%20NFC%20Keychains.%20Could%20we%20discuss%20the%20designs%20and%20pricing%3F" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-white text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-bold transition-colors border border-white/10 hover:border-transparent mt-1">
-                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
+                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order on WhatsApp
                         </a>
                     </div>
                 </div>
@@ -512,7 +563,7 @@
                     </div>
                     <div class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div class="bg-dark-800/90 backdrop-blur-sm text-neon-purple px-3 py-2 sm:px-4 rounded-full font-medium flex items-center gap-1 sm:gap-2 border border-neon-purple/30 transform translate-y-4 group-hover/img:translate-y-0 transition-all shadow-[0_0_15px_rgba(139,92,246,0.3)] text-xs sm:text-sm">
-                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">View</span> Gallery (5)
+                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> View Gallery (5)
                         </div>
                     </div>
                 </div>
@@ -522,8 +573,8 @@
                     <p class="text-gray-400 text-[11px] sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Smart digital cards connected to your website/portfolio.</p>
                     
                     <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4 space-y-1 !border-neon-purple/30 !bg-gradient-to-br !from-neon-purple/10 !to-transparent">
-                        <p class="text-white font-bold text-[10px] sm:text-sm">₹350/card <span class="text-gray-400 font-normal hidden sm:inline">(custom design)</span></p>
-                        <p class="text-neon-purple font-bold text-[10px] sm:text-sm">₹3,000 Combo <span class="text-gray-400 font-normal hidden sm:inline">(Card + Portfolio Site)</span></p>
+                        <p class="text-white font-bold text-[10px] sm:text-sm">₹350/card <span class="text-gray-400 font-normal">(custom design)</span></p>
+                        <p class="text-neon-purple font-bold text-[10px] sm:text-sm">₹3,000 Combo <span class="text-gray-400 font-normal">(Card + Portfolio Site)</span></p>
                     </div>
 
                     <div class="flex flex-col gap-2 mt-auto">
@@ -536,7 +587,7 @@
                             </button>
                         </div>
                         <a href="https://wa.me/917483232936?text=Hello!%20%F0%9F%8C%9F%20I%27d%20like%20to%20upgrade%20to%20smart%20NFC%20Business%20Cards.%20Can%20you%20share%20some%20design%20samples%20and%20pricing%3F" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-white text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-bold transition-colors border border-white/10 hover:border-transparent mt-1">
-                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
+                            <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order on WhatsApp
                         </a>
                     </div>
                 </div>
@@ -550,7 +601,7 @@
                     </div>
                     <div class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div class="bg-dark-800/90 backdrop-blur-sm text-neon-cyan px-3 py-2 sm:px-4 rounded-full font-medium flex items-center gap-1 sm:gap-2 border border-neon-cyan/30 transform translate-y-4 group-hover/img:translate-y-0 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] text-xs sm:text-sm">
-                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">View</span> Gallery (5)
+                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> View Gallery (5)
                         </div>
                     </div>
                 </div>
@@ -559,10 +610,10 @@
                     <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">Neon Name Boards</h3>
                     <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Custom LED neon signs for homes, businesses, and décor.</p>
                     <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
-                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹2,000 <span class="text-gray-400 font-normal hidden sm:inline">(2×1.5 ft board + adapter)</span></p>
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹2,000 <span class="text-gray-400 font-normal">(2×1.5 ft board + adapter)</span></p>
                     </div>
                     <a href="https://wa.me/917483232936?text=Hi%20there!%20%E2%9C%A8%20I%27m%20interested%20in%20getting%20a%20custom%20Neon%20Name%20Board.%20Can%20I%20share%20my%20design%20idea%20for%20a%20quote%3F" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
+                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order on WhatsApp
                     </a>
                 </div>
             </div>
@@ -575,7 +626,7 @@
                     </div>
                     <div class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div class="bg-dark-800/90 backdrop-blur-sm text-neon-cyan px-3 py-2 sm:px-4 rounded-full font-medium flex items-center gap-1 sm:gap-2 border border-neon-cyan/30 transform translate-y-4 group-hover/img:translate-y-0 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] text-xs sm:text-sm">
-                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">View</span> Gallery (5)
+                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> View Gallery (5)
                         </div>
                     </div>
                 </div>
@@ -584,10 +635,10 @@
                     <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">Acrylic Laser Cutting</h3>
                     <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Precision laser cutting for acrylic boards, signage, and designs.</p>
                     <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
-                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹15/minute <span class="text-gray-400 font-normal hidden sm:inline">(machine time)</span></p>
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">₹15/minute <span class="text-gray-400 font-normal">(machine time)</span></p>
                     </div>
                     <a href="https://wa.me/917483232936?text=Hello!%20%F0%9F%9B%A0%EF%B8%8F%20I%20have%20a%20requirement%20for%20Acrylic%20Laser%20Cutting%20services.%20Can%20we%20discuss%20dimensions%20and%20pricing%3F" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
+                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order on WhatsApp
                     </a>
                 </div>
             </div>
@@ -600,7 +651,7 @@
                     </div>
                     <div class="absolute inset-0 bg-dark-900/60 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <div class="bg-dark-800/90 backdrop-blur-sm text-neon-cyan px-3 py-2 sm:px-4 rounded-full font-medium flex items-center gap-1 sm:gap-2 border border-neon-cyan/30 transform translate-y-4 group-hover/img:translate-y-0 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)] text-xs sm:text-sm">
-                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> <span class="hidden sm:inline">View</span> Gallery (5)
+                            <i data-lucide="zoom-in" class="w-3 h-3 sm:w-4 sm:h-4"></i> View Gallery (5)
                         </div>
                     </div>
                 </div>
@@ -609,10 +660,10 @@
                     <h3 class="font-display text-sm sm:text-xl font-bold text-white mb-1 sm:mb-2 group-hover:text-neon-cyan transition-colors leading-tight">Custom Acrylic</h3>
                     <p class="text-gray-400 text-xs sm:text-sm mb-2 sm:mb-3 flex-1 line-clamp-2 sm:line-clamp-none">Personalized acrylic designs, awards, and displays for branding.</p>
                     <div class="price-tag rounded-lg sm:rounded-xl p-2 sm:p-3 mb-2 sm:mb-4">
-                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">Custom Quote <span class="text-gray-400 font-normal hidden sm:inline">(based on design)</span></p>
+                        <p class="text-neon-cyan font-bold text-[10px] sm:text-sm">Custom Quote <span class="text-gray-400 font-normal">(based on design)</span></p>
                     </div>
                     <a href="https://wa.me/917483232936?text=Hi%20Neo%20Draft%20Solutions!%20%F0%9F%8F%86%20I%27m%20interested%20in%20getting%20some%20Custom%20Acrylic%20Products%20made.%20Can%20I%20share%20my%20requirements%3F" target="_blank" rel="noopener noreferrer" class="w-full inline-flex items-center justify-center gap-1 sm:gap-2 py-2 sm:py-3 bg-dark-800 hover:bg-neon-cyan text-white hover:text-dark-900 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-colors mt-auto border border-white/5 hover:border-transparent">
-                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order <span class="hidden sm:inline">on WhatsApp</span>
+                        <i data-lucide="message-circle" class="w-3 h-3 sm:w-4 sm:h-4"></i> Order on WhatsApp
                     </a>
                 </div>
             </div>
@@ -857,7 +908,7 @@
         <h3 class="font-display text-2xl font-bold text-white mb-2 text-center">Smart Tap Demo</h3>
         <p class="text-neon-cyan text-sm mb-8 text-center font-medium">How NFC Cards Work</p>
 
-        <div class="relative w-full h-72 flex justify-center items-center my-4">
+        <div class="relative w-full h-72 flex justify-center items-center my-4 scene-flat">
             <!-- Smartphone Graphic -->
             <div class="phone-mockup">
                 <div class="phone-notch"></div>
@@ -895,7 +946,7 @@
         <h3 class="font-display text-2xl font-bold text-white mb-2 text-center">Keychain Tap Demo</h3>
         <p class="text-neon-cyan text-sm mb-8 text-center font-medium">Instantly Share Social Links</p>
 
-        <div class="relative w-full h-72 flex justify-center items-center my-4">
+        <div class="relative w-full h-72 flex justify-center items-center my-4 scene-flat">
             <!-- Smartphone Graphic -->
             <div class="phone-mockup">
                 <div class="phone-notch"></div>
